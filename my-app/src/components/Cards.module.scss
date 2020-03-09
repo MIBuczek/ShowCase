@@ -1,0 +1,73 @@
+.wrapper {
+ width: 90%;
+ height: 100%;
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ justify-content: center;
+ margin-left: auto;
+ margin-right: auto;
+ font-family: 'Montserrat';
+ font-style: normal;
+}
+.card {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-evenly;
+ width: 617px;
+ height: 220px;
+ background: #c4c4c4;
+ border: 2px solid #ffffff;
+ margin: 20px;
+ &Btn {
+  width: 15%;
+  height: 90%;
+  margin: 10px 10px;
+  button {
+   width: 67px;
+   height: 29px;
+   background: #c4c4c4;
+   border: 2px solid #ffffff;
+   color: white;
+   margin-bottom: 10px;
+   font-weight: 600;
+   font-size: 14px;
+   line-height: 17px;
+   letter-spacing: -0.015em;
+   color: #ffffff;
+  }
+ }
+ &Data {
+  width: 70%;
+  height: 90%;
+  margin: 10px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  margin-right: 10%;
+  h1 {
+   font-weight: 600;
+   font-size: 36px;
+   line-height: 44px;
+  }
+  h2 {
+   font-weight: 600;
+   font-size: 24px;
+   line-height: 29px;
+  }
+  span {
+   color: black;
+   font-weight: 600;
+   font-size: 14px;
+   line-height: 17px;
+   margin: 5px 10px;
+  }
+  p {
+   font-weight: normal;
+   font-size: 14px;
+   line-height: 17px;
+   color: black;
+   margin-top: 10px;
+  }
+ }
+}

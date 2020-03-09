@@ -1,0 +1,56 @@
+.wrapper {
+ width: 100%;
+ height: 82vh;
+ display: flex;
+ justify-content: center;
+ font-family: 'Montserrat';
+ font-style: normal;
+}
+.editPannel {
+ width: 55%;
+ height: 607px;
+ background: #c4c4c4;
+ border: 2px solid #ffffff;
+ box-shadow: 0 5px 10px 2px grey;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin: auto 0;
+ form {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ }
+ h2 {
+  margin: 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 36px;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+ }
+ h5 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 36px;
+  color: #ffffff;
+  margin-bottom: 20px;
+ }
+ a {
+  margin-left: auto;
+  .crossBtn {
+   outline: none;
+   width: 40px;
+   height: 40px;
+   background: none;
+   border: none;
+   margin-right: 15px;
+   margin-top: 10px;
+   cursor: pointer;
+  }
+ }
+}

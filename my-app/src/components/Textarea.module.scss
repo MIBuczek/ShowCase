@@ -1,0 +1,24 @@
+.textarea {
+ width: 630px;
+ height: 127px;
+ background: #efefef;
+ border: none;
+ margin-bottom: 20px;
+ text-align: left;
+ font-weight: 600;
+ font-size: 24px;
+ line-height: 29px;
+ letter-spacing: -0.015em;
+ color: #33658a;
+ margin-right: 10px;
+ &::placeholder {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: -0.015em;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 5px 10px;
+ }
+}

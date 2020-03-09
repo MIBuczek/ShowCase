@@ -1,0 +1,55 @@
+.serchbar {
+ width: 100%;
+ height: 60px;
+ background: rgba(147, 168, 172, 0.9);
+ border: 2px solid #ffffff;
+ display: flex;
+ justify-content: center;
+ padding: 0;
+ margin: 0;
+ &Form {
+  width: 60%;
+  height: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ }
+ &Select {
+  width: 25%;
+  height: 80%;
+  background: #93a8ac;
+  border: 2px solid #fff;
+  color: #fff;
+  outline: none;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  text-align-last: center;
+ }
+ &Input {
+  width: 30%;
+  height: 80%;
+  margin: 0 10px;
+  border: none;
+  text-align: center;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.015em;
+  color: #4c5f6b;
+  &::placeholder {
+   color: #4c5f6b;
+  }
+ }
+ &Btn {
+  @extend .serchbarSelect;
+  &:active {
+   transition-duration: 0.25s;
+   background: #4c5f6b;
+  }
+ }
+}
