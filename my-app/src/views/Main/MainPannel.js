@@ -6,7 +6,7 @@ import Mainbar from './Mainbar';
 import Footer from '../LogIn/Footer';
 import FormAddContact from './Formadd';
 import Profile from './Profile';
-import styles from './Main.module.scss';
+import styles from './MainPannel.module.scss';
 
 const MainContent = ({ user }) => (
  <main className={styles.wrapper}>
@@ -20,7 +20,7 @@ const Addcontetn = () => (
  </main>
 );
 
-const MainPannel = ({ logOut, user }) => {
+const MainPannel = ({ user, logOut }) => {
  return (
   <>
    <BrowserRouter>

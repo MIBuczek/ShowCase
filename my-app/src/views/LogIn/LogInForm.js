@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './LogIn.module.scss';
+import styles from './LogInForm.module.scss';
 import SingIn from './SingIn';
 import Input from '../../components/Input';
 import Button from '../../components/Button';

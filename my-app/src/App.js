@@ -1,12 +1,8 @@
 import React from 'react';
 import styles from './App.module.scss';
-import LogIn from './views/LogIn/LogIn';
-import Header from './views/LogIn/Header';
-import Motto from './views/LogIn/Motto';
-import Footer from './views/LogIn/Footer';
-import MainPannel from './views/Main/Main';
+import LoginPannel from './views/LogIn/LogInPannel';
+import MainPannel from './views/Main/MainPannel';
 import data from './data/data.json';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
  state = {
@@ -30,15 +26,13 @@ class App extends React.Component {
  };
  handleLogOut = e => {
   e.preventDefault();
-  this.setState({ logIn: false });
+  this.setState({ user: undefined });
  };
  render() {
   if (this.state.user === undefined) {
    return (
     <div className={styles.wrapper}>
-     <Header />
-     <Motto />
-     <LogIn
+     <LoginPannel
       onChangeFn={e => this.handleChangeLogIn(e)}
       onClickFn={e => {
        this.handleLoggin(e);
@@ -46,7 +40,6 @@ class App extends React.Component {
       valueUser={this.state.userName}
       valuePassword={this.state.password}
      />
-     <Footer />
     </div>
    );
   } else {
