@@ -11,7 +11,10 @@ class Mainbar extends React.Component {
   return (
    <section className={styles.wrappeCards}>
     <Searchbar />
-    <Cards userData={this.props.userData} />
+    <Cards
+     userData={this.props.userData}
+     handleEditContact={this.props.handleEditContact}
+    />
    </section>
   );
  }

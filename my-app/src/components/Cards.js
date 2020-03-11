@@ -1,14 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Cards.module.scss';
 
-const Cards = ({ userData }) => {
+const Cards = ({ userData, handleEditContact }) => {
  return (
   <section className={styles.wrapper}>
    {userData.contacts.map(contact => {
     return (
      <div className={styles.card} key={contact.companyName}>
       <div className={styles.cardBtn}>
-       <button>edit.</button>
+       <button
+        onClick={e => {
+         handleEditContact(e, contact);
+        }}
+       >
+        <Link to="/editcontact">edit.</Link>
+       </button>
        <button>delete.</button>
       </div>
       <div className={styles.cardData}>
