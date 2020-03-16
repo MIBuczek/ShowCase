@@ -8,7 +8,8 @@ class LoggIn extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   singIn: false
+   singIn: false,
+   newUser: undefined
   };
  }
 
@@ -19,6 +20,10 @@ class LoggIn extends React.Component {
  handleSingOut = e => {
   e.preventDefault();
   this.setState({ singIn: false });
+ };
+ addNewUser = (e, newPerson) => {
+  e.preventDefault();
+  this.setState({ newUser: newPerson });
  };
  render() {
   const singInText = (
@@ -64,9 +69,7 @@ class LoggIn extends React.Component {
        singOut={e => {
         this.handleSingOut(e);
        }}
-       eventHandle={e => {
-        this.handleSingOut(e);
-       }}
+       eventHandle={this.handleSingOut}
       />
      ) : (
       singInText

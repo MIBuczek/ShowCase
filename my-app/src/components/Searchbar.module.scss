@@ -52,4 +52,9 @@
    background: #4c5f6b;
   }
  }
+ @media (max-width: 1200px) {
+  &Form {
+   width: 95%;
+  }
+ }
 }

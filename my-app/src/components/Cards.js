@@ -2,12 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Cards.module.scss';
 
-const Cards = ({ userData, handleEditContact }) => {
+const Cards = ({
+ userData,
+ handleEditContact,
+ visible,
+ handleDeleteContact
+}) => {
  return (
   <section className={styles.wrapper}>
-   {userData.contacts.map(contact => {
+   {userData.slice(0, visible).map((contact, id) => {
     return (
-     <div className={styles.card} key={contact.companyName}>
+     <div className={styles.card} key={id}>
       <div className={styles.cardBtn}>
        <button
         onClick={e => {
@@ -16,7 +21,9 @@ const Cards = ({ userData, handleEditContact }) => {
        >
         <Link to="/editcontact">edit.</Link>
        </button>
-       <button>delete.</button>
+       <button type="button" onClick={e => handleDeleteContact(e, contact.id)}>
+        delete.
+       </button>
       </div>
       <div className={styles.cardData}>
        <h1>{contact.companyName}</h1>

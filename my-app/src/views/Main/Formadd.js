@@ -4,32 +4,159 @@ import Button from '../../components/Button';
 import Textarea from '../../components/Textarea';
 import styles from './Formadd.module.scss';
 
-const FromAdd = () => {
- return (
-  <section className={styles.wrapper}>
-   <div className={styles.addContact}>
-    <div className={styles.addContactText}>
-     <h1>You are adding new contact to your client base.</h1>
-     <span>please complete all required fields.</span>
+class FromAdd extends React.Component {
+ constructor(props) {
+  super(props);
+  this.state = {
+   userId: 1,
+   companyName: '',
+   companyCountry: '',
+   companyWWW: '',
+   companyProffesion: '',
+   contactName: '',
+   contactEmail: '',
+   contactPhone: '',
+   contactPosition: '',
+   description: ''
+  };
+ }
+ handleAddContact = e => {
+  e.preventDefault();
+  this.setState({ [e.target.name]: e.target.value });
+ };
+ handleUploadContact = e => {
+  e.preventDefault();
+  const {
+   companyName,
+   companyCountry,
+   companyWWW,
+   companyProffesion,
+   contactName,
+   contactEmail,
+   contactPhone,
+   contactPosition,
+   description
+  } = this.state;
+  const newContact = {
+   companyName,
+   companyCountry,
+   companyWWW,
+   companyProffesion,
+   contactName,
+   contactEmail,
+   contactPhone,
+   contactPosition,
+   description
+  };
+  fetch(`http://localhost:4000/contacts`, {
+   method: 'POST',
+   headers: {
+    'Content-Type': 'application/json'
+   },
+   body: JSON.stringify(newContact)
+  })
+   .then(response => response.text())
+   .catch(error => console.error('Error:', error));
+ };
+ render() {
+  return (
+   <section className={styles.wrapper}>
+    <div className={styles.addContact}>
+     <div className={styles.addContactText}>
+      <h1>You are adding new contact to your client base.</h1>
+      <span>please complete all required fields.</span>
+     </div>
+     <form className={styles.addContactForm}>
+      <div className={styles.addContactFormPart}>
+       <Input
+        type={'text'}
+        placeholder={'company name.'}
+        value={this.state.companyName}
+        name="companyName"
+        onChange={e => {
+         this.handleAddContact(e);
+        }}
+       />
+       <Input
+        type={'text'}
+        placeholder={'www.'}
+        size={'short'}
+        name="companyWWW"
+        value={this.state.companyWWW}
+        onChange={e => {
+         this.handleAddContact(e);
+        }}
+       />
+       <Input
+        type={'text'}
+        placeholder={'country.'}
+        size={'short'}
+        name="companyCountry"
+        value={this.state.companyCountry}
+        onChange={e => {
+         this.handleAddContact(e);
+        }}
+       />
+       <Input
+        type={'text'}
+        placeholder={'proffesion.'}
+        name="companyProffesion"
+        value={this.state.companyProffesion}
+        onChange={e => {
+         this.handleAddContact(e);
+        }}
+       />
+      </div>
+      <div>
+       <Input
+        type={'text'}
+        placeholder={'contact person.'}
+        name="contactName"
+        value={this.state.contactName}
+        onChange={e => {
+         this.handleAddContact(e);
+        }}
+       />
+       <Input
+        type={'text'}
+        placeholder={'phone.'}
+        size={'short'}
+        value={this.state.contactPhone}
+        name="contactPhone"
+        onChange={e => {
+         this.handleAddContact(e);
+        }}
+       />
+       <Input
+        type={'text'}
+        placeholder={'e-mail.'}
+        size={'short'}
+        name="contactEmail"
+        value={this.state.contactEmail}
+        onChange={e => {
+         this.handleAddContact(e);
+        }}
+       />
+       <Textarea
+        type={'text'}
+        placeholder={'description.'}
+        value={this.state.description}
+        name="description"
+        onChange={e => {
+         this.handleAddContact(e);
+        }}
+       />
+      </div>
+     </form>
+     <Button
+      type={'button'}
+      value={'add.'}
+      eventHandle={e => this.handleUploadContact(e)}
+     />
     </div>
-    <form className={styles.addContactForm}>
-     <div className={styles.addContactFormPart}>
-      <Input type={'text'} placeholder={'company name.'} />
-      <Input type={'text'} placeholder={'zip code.'} size={'short'} />
-      <Input type={'text'} placeholder={'city.'} size={'short'} />
-      <Input type={'text'} placeholder={'street.'} />
-     </div>
-     <div>
-      <Input type={'text'} placeholder={'contact person.'} />
-      <Input type={'text'} placeholder={'phone.'} size={'short'} />
-      <Input type={'text'} placeholder={'e-mail.'} size={'short'} />
-      <Textarea type={'text'} placeholder={'description.'} />
-     </div>
-    </form>
-    <Button type={'button'} value={'add.'} />
-   </div>
-  </section>
- );
-};
+   </section>
+  );
+ }
+}
 
 export default FromAdd;

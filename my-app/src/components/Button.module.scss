@@ -10,4 +10,10 @@
  letter-spacing: -0.015em;
  color: #ffffff;
  cursor: pointer;
+ margin: 1rem auto;
+ outline: none;
+ &:active {
+  transition: width 0.2s;
+  background: #d5d5d5;
+ }
 }

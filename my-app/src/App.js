@@ -2,15 +2,28 @@ import React from 'react';
 import styles from './App.module.scss';
 import LoginPannel from './views/LogIn/LogInPannel';
 import MainPannel from './views/Main/MainPannel';
-import data from './data/data.json';
 
 class App extends React.Component {
  state = {
-  users: [...data.users],
+  users: [],
+  contacts: [],
   userName: '',
   password: '',
   user: undefined
  };
+
+ componentDidMount() {
+  fetch(`http://localhost:4000/users`)
+   .then(resp => resp.json())
+   .then(resp => {
+    return this.setState({ users: [...resp] });
+   });
+  fetch(`http://localhost:4000/contacts`)
+   .then(resp => resp.json())
+   .then(resp => {
+    return this.setState({ contacts: [...resp] });
+   });
+ }
  handleChangeLogIn = e => {
   e.preventDefault();
   this.setState({ [e.target.name]: e.target.value });
@@ -47,6 +60,7 @@ class App extends React.Component {
     <div className={styles.wrapper}>
      <MainPannel
       user={this.state.user}
+      contacts={this.state.contacts}
       logOut={e => {
        this.handleLogOut(e);
       }}
@@ -60,8 +74,7 @@ class App extends React.Component {
 export default App;
 
 //Usuwanie kontaktu z usera
-//Szukanie po kraju/profesji/nazwie
-//Przycisk ładowanie wiecej kontaktów z funkcjonalnościa
+//Szukanie po kraju/profesji/nazwie -> bład
 //fetch --> Json serwer --> firebase
 //refactoring
 //deploing-->netlify

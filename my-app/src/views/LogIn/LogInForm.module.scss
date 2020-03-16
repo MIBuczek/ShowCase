@@ -8,8 +8,8 @@
  font-family: 'Montserrat', sans-serif;
 }
 .loggIn {
- width: 758px;
- height: 467px;
+ width: 60%;
+ min-height: 467px;
  display: flex;
  align-self: center;
  margin-top: 3rem;
@@ -19,6 +19,9 @@
  align-items: center;
  background: #c4c4c4;
  border: 3px solid #ffffff;
+ @media (max-width: 1250px) {
+  width: 80%;
+ }
  .title {
   height: 50px;
   font-weight: 600;
@@ -45,6 +48,9 @@
  line-height: 36px;
  letter-spacing: -0.015em;
  color: #ffffff;
+ @media (max-width: 1000px) {
+  text-align: center;
+ }
 }
 .singInBtn {
  @extend .singInText;

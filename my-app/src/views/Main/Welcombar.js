@@ -9,7 +9,7 @@ const Welcombar = ({ userData }) => {
     <h3>
      {userData.position} at {userData.company}
     </h3>
-    <span>You have {userData.contacts.length} buissnes cards</span>
+    <span>You have {0} buissnes cards</span>
    </div>
    <Link to="/addcontact">
     <button type="button" className={styles.addBtn}>

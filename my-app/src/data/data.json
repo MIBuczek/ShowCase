@@ -1,54 +1,105 @@
 {
-	"users": [
-		{
-			"loggIn": "MIBuczek",
-			"password": "admin",
-			"email": "mibcoding@gmail.com",
-			"company": "Adsystem",
-			"position": "Account Manager",
-			"proffesion": "Printing house",
-			"contacts": [
-				{
-					"companyName": "deepblue",
-					"companyCountry": "United Kingdom",
-					"companyWWW": "www.deepblue.co.uk",
-					"contactName": "Phil Worsfold",
-					"contactEmail": "philw@deepblue.co.uk",
-					"contactPhone": "+442286805847",
-					"contactProfesion": "Director",
-					"description": "Contact after fairs in Munich. Interest of all moder product category"
-				},
-				{
-					"companyName": "l-shopteam",
-					"companyCountry": "Czech Republic",
-					"companyWWW": "www.l-shopteam.cz",
-					"contactName": "Richard Hamp",
-					"contactEmail": "r.hampl@l-shop-team.cz",
-					"contactPhone": "+42602256841",
-					"contactProfesion": "Business developer manager",
-					"description": "Possible reseller of our product"
-				},
-				{
-					"companyName": "PAKETO",
-					"companyCountry": "Czech",
-					"companyWWW": "www.paketo.cz",
-					"contactName": "Marcela Klabnikova",
-					"contactEmail": "marcela@gnp.cz",
-					"contactPhone": "+42602554535",
-					"contactProfesion": "Sales manager",
-					"description": "Contact after fairs in Munich. Interest of all moder product category"
-				},
-				{
-					"companyName": "Sublimprofil",
-					"companyCountry": "Austria",
-					"companyWWW": "www.sublimprofil.au",
-					"contactName": "Kurt Match",
-					"contactEmail": "kurt@sublimprofil.au",
-					"contactPhone": "+40731490282",
-					"contactProfesion": "marketing manager",
-					"description": "Fari booth size 10x12metter"
-				}
-			]
-		}
-	]
+  "users": [
+    {
+      "id": 1,
+      "loggIn": "MIBuczek",
+      "password": "admin",
+      "email": "mibcoding@gmail.com",
+      "company": "Adsystem",
+      "position": "Account Manager",
+      "proffesion": "Printing house"
+    },
+    {
+      "id": 2,
+      "loggIn": "SaraB",
+      "password": "sara",
+      "email": "sarab@gmail.com",
+      "company": "SISK",
+      "position": "Office Manager",
+      "proffesion": "Marketing house"
+    },
+    {
+      "id": 3,
+      "loggIn": "Niko",
+      "password": "Niko2",
+      "email": "niko@coding.com",
+      "company": "mibcoding",
+      "position": "programist",
+      "proffesion": "Webmastering"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "userId": 2,
+      "companyName": "deepblue",
+      "companyCountry": "United Kingdom",
+      "companyWWW": "www.deepblue.co.uk",
+      "contactName": "Phil Worsfold",
+      "contactEmail": "philw@deepblue.co.uk",
+      "contactPhone": "+442286805847",
+      "contactPosition": "Director",
+      "description": "Contact after fairs in Munich. Interest of all moder product category"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "companyName": "l-shopteam",
+      "companyCountry": "Czech Republic",
+      "companyWWW": "www.l-shopteam.cz",
+      "contactName": "Richard Hamp",
+      "contactEmail": "r.hampl@l-shop-team.cz",
+      "contactPhone": "+42602256841",
+      "contactPosition": "Business developer manager",
+      "description": "Possible reseller of our product"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "companyName": "PAKETO",
+      "companyCountry": "Czech",
+      "companyWWW": "www.paketo.cz",
+      "contactName": "Marcela Klabnikova",
+      "contactEmail": "marcela@gnp.cz",
+      "contactPhone": "+42602554535",
+      "contactPosition": "Sales manager",
+      "description": "Contact after fairs in Munich. Interest of all moder product category"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "companyName": "Sublimprofil",
+      "companyCountry": "Austria",
+      "companyWWW": "www.sublimprofil.au",
+      "contactName": "Kurt Match",
+      "contactEmail": "kurt@sublimprofil.au",
+      "contactPhone": "+40731490282",
+      "contactPosition": "marketing manager",
+      "description": "Fari booth size 10x12metter"
+    },
+    {
+      "id": 5,
+      "userId": 2,
+      "companyName": "deepblue",
+      "companyCountry": "United Kingdom",
+      "companyWWW": "www.deepblue.co.uk",
+      "contactName": "Phil Worsfold",
+      "contactEmail": "philw@deepblue.co.uk",
+      "contactPhone": "+442286805847",
+      "contactPosition": "Director",
+      "description": "Contact after fairs in Munich. Interest of all moder product category"
+    },
+    {
+      "id": 6,
+      "userId": 3,
+      "companyName": "l-shopteam",
+      "companyCountry": "Czech Republic",
+      "companyWWW": "www.l-shopteam.cz",
+      "contactName": "Richard Hamp",
+      "contactEmail": "r.hampl@l-shop-team.cz",
+      "contactPhone": "+42602256841",
+      "contactPosition": "Business developer manager",
+      "description": "Possible reseller of our product"
+    }
+  ]
 }

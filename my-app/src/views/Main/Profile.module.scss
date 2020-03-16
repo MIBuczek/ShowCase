@@ -1,6 +1,6 @@
 .wrapper {
  width: 100%;
- height: 82vh;
+ min-height: 82vh;
  display: flex;
  justify-content: center;
  font-family: 'Montserrat';
@@ -8,7 +8,7 @@
 }
 .editPannel {
  width: 55%;
- height: 607px;
+ min-height: 607px;
  background: #c4c4c4;
  border: 2px solid #ffffff;
  box-shadow: 0 5px 10px 2px grey;

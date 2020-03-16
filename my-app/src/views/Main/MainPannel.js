@@ -9,10 +9,14 @@ import Profile from './Profile';
 import Formedit from './Formedit';
 import styles from './MainPannel.module.scss';
 
-const MainContent = ({ user, handleEditContact }) => (
+const MainContent = ({ user, contacts, handleEditContact }) => (
  <main className={styles.wrapper}>
   <Welcombar userData={user} />
-  <Mainbar userData={user} handleEditContact={handleEditContact} />
+  <Mainbar
+   userData={user}
+   contactData={contacts}
+   handleEditContact={handleEditContact}
+  />
  </main>
 );
 const Addcontetn = () => (
@@ -25,22 +29,11 @@ class MainPannel extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   contactToEdit: {
-    companyName: 'deepblue',
-    companyCountry: 'United Kingdom',
-    companyWWW: 'www.deepblue.co.uk',
-    contactName: 'Phil Worsfold',
-    contactEmail: 'philw@deepblue.co.uk',
-    contactPhone: '+442286805847',
-    contactProfesion: 'Director',
-    description:
-     'Contact after fairs in Munich. Interest of all moder product category'
-   }
+   contactToEdit: undefined
   };
  }
  handleContactToEdit = (e, user) => {
   e.preventDefault();
-  console.log(user);
   this.setState({ contactToEdit: user });
  };
  render() {
@@ -55,6 +48,7 @@ class MainPannel extends React.Component {
        component={() => (
         <MainContent
          user={this.props.user}
+         contacts={this.props.contacts}
          handleEditContact={this.handleContactToEdit}
         />
        )}

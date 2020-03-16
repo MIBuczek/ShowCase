@@ -1,6 +1,6 @@
 .inputLong {
- width: 630px;
- height: 48px;
+ width: 90%;
+ min-height: 48px;
  background: #efefef;
  border: none;
  margin-bottom: 20px;
@@ -26,5 +26,8 @@
 
 .inputShort {
  @extend .inputLong;
- width: 310px;
+ width: 44%;
+ @media (max-width: 1200px) {
+  width: 90%;
+ }
 }
