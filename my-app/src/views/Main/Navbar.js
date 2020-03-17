@@ -15,7 +15,9 @@ const HeaderNavigation = ({ logOut }) => (
     <NavLink to="/profile">profil.</NavLink>
    </li>
    <li className={styles.navPanelLink}>
-    <a onClick={logOut}>log out.</a>
+    <a href="#logout" onClick={logOut}>
+     log out.
+    </a>
    </li>
   </ul>
  </nav>

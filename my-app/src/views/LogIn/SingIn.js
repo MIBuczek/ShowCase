@@ -23,10 +23,25 @@ class SingIn extends React.Component {
  };
  handleSingIn = e => {
   e.preventDefault();
-  const { loggIn, password, company, prof
-    .then(response => response.text())
-    .catch(error => console.error('Error:', error));
+  const { loggIn, password, company, proffesion } = this.state;
+  const newPerson = {
+   loggIn,
+   password,
+   company,
+   proffesion,
+   contacts: []
   };
+  this.setState({ newUser: newPerson });
+  fetch('http://localhost:4000/users', {
+   method: 'POST',
+   headers: {
+    'Content-Type': 'application/json'
+   },
+   body: JSON.stringify(newPerson)
+  })
+   .then(response => response.text())
+   .catch(error => console.error('Error:', error));
+ };
  render() {
   return (
    <div className={styles.wrapper}>
