@@ -9,11 +9,12 @@ class Profile extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   userName: this.props.user.loggIn,
+   loggIn: this.props.user.loggIn,
    password: this.props.user.password,
    dublicatePassword: this.props.user.password,
    company: this.props.user.company,
-   profesion: this.props.user.position,
+   position: this.props.user.position,
+   proffesion: this.props.user.proffesion,
    email: this.props.user.email
   };
  }
@@ -23,6 +24,24 @@ class Profile extends React.Component {
  };
  handleSaveChange = e => {
   e.preventDefault();
+  const { loggIn, password, company, position, proffesion, email } = this.state;
+  const upDatePerson = {
+   loggIn,
+   password,
+   company,
+   proffesion,
+   position,
+   email
+  };
+  fetch(`http://localhost:4000/users/${this.props.user.id}`, {
+   method: 'PUT',
+   headers: {
+    'Content-Type': 'application/json'
+   },
+   body: JSON.stringify(upDatePerson)
+  })
+   .then(response => response.text())
+   .catch(error => console.error('Error:', error));
   alert('Your change has been saved');
  };
  render() {
@@ -40,8 +59,8 @@ class Profile extends React.Component {
       <Input
        type={'text'}
        placeholder={'user name.'}
-       name={'userName'}
-       value={this.state.userName}
+       name={'loggIn'}
+       value={this.state.loggIn}
        onChange={e => {
         this.handleEditUser(e);
        }}
@@ -75,9 +94,18 @@ class Profile extends React.Component {
       />
       <Input
        type={'text'}
-       placeholder={'profesion.'}
-       name={'profesion'}
-       value={this.state.profesion}
+       placeholder={'proffesion.'}
+       name={'proffesion'}
+       value={this.state.proffesion}
+       onChange={e => {
+        this.handleEditUser(e);
+       }}
+      />
+      <Input
+       type={'text'}
+       placeholder={'position.'}
+       name={'position'}
+       value={this.state.position}
        onChange={e => {
         this.handleEditUser(e);
        }}
@@ -98,7 +126,7 @@ class Profile extends React.Component {
       eventHandle={e => {
        this.handleSaveChange(e);
       }}
-     />
+     ></Button>
     </div>
    </section>
   );

@@ -14,34 +14,43 @@ class SingIn extends React.Component {
    dublicatePassword: '',
    company: '',
    proffesion: '',
-   newUser: undefined
+   position: '',
+   checked: false
   };
  }
  handleSingInFiles = e => {
   e.preventDefault();
   this.setState({ [e.target.name]: e.target.value });
  };
+ hangleCheckbox = e => {
+  e.preventDefault();
+  this.setState({ checked: e.target.checked });
+ };
  handleSingIn = e => {
   e.preventDefault();
-  const { loggIn, password, company, proffesion } = this.state;
+  const { loggIn, password, company, proffesion, position } = this.state;
   const newPerson = {
    loggIn,
    password,
    company,
    proffesion,
-   contacts: []
+   position
   };
-  this.setState({ newUser: newPerson });
-  fetch('http://localhost:4000/users', {
-   method: 'POST',
-   headers: {
-    'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(newPerson)
-  })
-   .then(response => response.text())
-   .catch(error => console.error('Error:', error));
+  if (this.state.checked === true) {
+   fetch('http://localhost:4000/users', {
+    method: 'POST',
+    headers: {
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newPerson)
+   })
+    .then(response => response.text())
+    .catch(error => console.error('Error:', error));
+  } else {
+   alert('Please accept requlations');
+  }
  };
+
  render() {
   return (
    <div className={styles.wrapper}>
@@ -89,14 +98,27 @@ class SingIn extends React.Component {
      />
      <Input
       type={'text'}
-      placeholder={'profesion.'}
+      placeholder={'proffesion.'}
       name={'proffesion'}
       value={this.state.proffesion}
       onChange={e => {
        this.handleSingInFiles(e);
       }}
+     />{' '}
+     <Input
+      type={'text'}
+      placeholder={'position.'}
+      name={'position'}
+      value={this.state.position}
+      onChange={e => {
+       this.handleSingInFiles(e);
+      }}
      />
-     <Checkbox type={'checkbox'} />
+     <Checkbox
+      type={'checkbox'}
+      onChange={e => this.hangleCheckbox(e)}
+      defaultChecked={this.state.chechbox}
+     />
     </form>
     <Button
      type={'button'}

@@ -1,6 +1,6 @@
 .wrapper {
  width: 100%;
- height: 67vh;
+ min-height: 67vh;
  display: flex;
  justify-content: center;
  font-family: 'Montserrat';
@@ -8,12 +8,12 @@
  font-family: 'Montserrat', sans-serif;
 }
 .loggIn {
- width: 60%;
+ width: 50%;
  min-height: 467px;
  display: flex;
  align-self: center;
  margin-top: 3rem;
- margin-bottom: auto;
+ margin-bottom: 3rem;
  flex-direction: column;
  justify-content: space-evenly;
  align-items: center;

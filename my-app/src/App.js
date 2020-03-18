@@ -24,6 +24,7 @@ class App extends React.Component {
     return this.setState({ contacts: [...resp] });
    });
  }
+
  handleChangeLogIn = e => {
   e.preventDefault();
   this.setState({ [e.target.name]: e.target.value });
@@ -35,7 +36,7 @@ class App extends React.Component {
     user.loggIn === this.state.userName && user.password === this.state.password
    );
   });
-  this.setState({ user: matchingUser });
+  this.setState({ userName: '', password: '', user: matchingUser });
  };
  handleLogOut = e => {
   e.preventDefault();

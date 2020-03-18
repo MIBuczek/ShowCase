@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Cross from '../../assets/cross.png';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Textarea from '../../components/Textarea';
@@ -8,7 +10,7 @@ class FromAdd extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   userId: 1,
+   userId: this.props.user.id,
    companyName: '',
    companyCountry: '',
    companyWWW: '',
@@ -35,7 +37,8 @@ class FromAdd extends React.Component {
    contactEmail,
    contactPhone,
    contactPosition,
-   description
+   description,
+   userId
   } = this.state;
   const newContact = {
    companyName,
@@ -46,7 +49,8 @@ class FromAdd extends React.Component {
    contactEmail,
    contactPhone,
    contactPosition,
-   description
+   description,
+   userId
   };
   fetch(`http://localhost:4000/contacts`, {
    method: 'POST',
@@ -63,6 +67,11 @@ class FromAdd extends React.Component {
    <section className={styles.wrapper}>
     <div className={styles.addContact}>
      <div className={styles.addContactText}>
+      <Link to="/">
+       <button className={styles.crossBtn}>
+        <img src={Cross} alt={'cross'} />
+       </button>
+      </Link>
       <h1>You are adding new contact to your client base.</h1>
       <span>please complete all required fields.</span>
      </div>

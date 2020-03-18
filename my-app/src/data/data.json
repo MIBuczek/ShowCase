@@ -1,22 +1,22 @@
 {
   "users": [
     {
-      "id": 1,
       "loggIn": "MIBuczek",
-      "password": "admin",
-      "email": "mibcoding@gmail.com",
+      "password": "buczek",
       "company": "Adsystem",
+      "proffesion": "Printing house",
       "position": "Account Manager",
-      "proffesion": "Printing house"
+      "email": "mibcoding@gmail.com",
+      "id": 1
     },
     {
-      "id": 2,
       "loggIn": "SaraB",
       "password": "sara",
-      "email": "sarab@gmail.com",
       "company": "SISK",
+      "proffesion": "Marketing house",
       "position": "Office Manager",
-      "proffesion": "Marketing house"
+      "email": "sarab@gmail.com",
+      "id": 2
     },
     {
       "id": 3,
@@ -26,6 +26,38 @@
       "company": "mibcoding",
       "position": "programist",
       "proffesion": "Webmastering"
+    },
+    {
+      "loggIn": "",
+      "password": "",
+      "company": "",
+      "proffesion": "",
+      "position": "",
+      "id": 4
+    },
+    {
+      "loggIn": "TEST",
+      "password": "test",
+      "company": "TestCompany",
+      "proffesion": "testing",
+      "position": "tester",
+      "id": 5
+    },
+    {
+      "loggIn": "TEST",
+      "password": "test",
+      "company": "TestCompany",
+      "proffesion": "testing",
+      "position": "tester",
+      "id": 6
+    },
+    {
+      "loggIn": "TEST",
+      "password": "test",
+      "company": "TestCompany",
+      "proffesion": "testing",
+      "position": "tester",
+      "id": 7
     }
   ],
   "contacts": [
@@ -35,6 +67,7 @@
       "companyName": "deepblue",
       "companyCountry": "United Kingdom",
       "companyWWW": "www.deepblue.co.uk",
+      "companyProffesion": "Gift shop",
       "contactName": "Phil Worsfold",
       "contactEmail": "philw@deepblue.co.uk",
       "contactPhone": "+442286805847",
@@ -47,6 +80,7 @@
       "companyName": "l-shopteam",
       "companyCountry": "Czech Republic",
       "companyWWW": "www.l-shopteam.cz",
+      "companyProffesion": "Sport shop",
       "contactName": "Richard Hamp",
       "contactEmail": "r.hampl@l-shop-team.cz",
       "contactPhone": "+42602256841",
@@ -54,28 +88,30 @@
       "description": "Possible reseller of our product"
     },
     {
-      "id": 3,
-      "userId": 1,
       "companyName": "PAKETO",
       "companyCountry": "Czech",
       "companyWWW": "www.paketo.cz",
+      "companyProffesion": "AV Agency",
       "contactName": "Marcela Klabnikova",
       "contactEmail": "marcela@gnp.cz",
       "contactPhone": "+42602554535",
       "contactPosition": "Sales manager",
-      "description": "Contact after fairs in Munich. Interest of all moder product category"
+      "description": "Contact after fairs in Munich. Interest of all moder product category",
+      "id": 3,
+      "userId": 1
     },
     {
-      "id": 4,
-      "userId": 1,
       "companyName": "Sublimprofil",
       "companyCountry": "Austria",
       "companyWWW": "www.sublimprofil.au",
+      "companyProffesion": "Printing house",
       "contactName": "Kurt Match",
       "contactEmail": "kurt@sublimprofil.au",
       "contactPhone": "+40731490282",
       "contactPosition": "marketing manager",
-      "description": "Fari booth size 10x12metter"
+      "description": "Fari booth size 10x12metter",
+      "id": 4,
+      "userId": 1
     },
     {
       "id": 5,
@@ -83,6 +119,7 @@
       "companyName": "deepblue",
       "companyCountry": "United Kingdom",
       "companyWWW": "www.deepblue.co.uk",
+      "companyProffesion": "E-shop",
       "contactName": "Phil Worsfold",
       "contactEmail": "philw@deepblue.co.uk",
       "contactPhone": "+442286805847",
@@ -95,6 +132,7 @@
       "companyName": "l-shopteam",
       "companyCountry": "Czech Republic",
       "companyWWW": "www.l-shopteam.cz",
+      "companyProffesion": "Sport e-shop",
       "contactName": "Richard Hamp",
       "contactEmail": "r.hampl@l-shop-team.cz",
       "contactPhone": "+42602256841",

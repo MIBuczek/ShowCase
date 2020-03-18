@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Cross from '../../assets/cross.png';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Textarea from '../../components/Textarea';
@@ -8,16 +10,31 @@ class FromEdit extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   companyName: this.props.user.companyName,
-   companyCountry: this.props.user.companyCountry,
-   companyAddress: this.props.user.companyAddress,
-   companyWWW: this.props.user.companyWWW,
-   contactName: this.props.user.contactName,
-   contactEmail: this.props.user.contactEmail,
-   contactPhone: this.props.user.contactPhone,
-   contactProfesion: this.props.user.contactProfesion,
-   description: this.props.user.description
+   companyName: '',
+   companyCountry: '',
+   companyWWW: '',
+   companyProffesion: '',
+   contactName: '',
+   contactEmail: '',
+   contactPhone: '',
+   contactPosition: '',
+   description: '',
+   userId: ''
   };
+ }
+ componentDidMount() {
+  this.setState({
+   companyName: this.props.editContact.companyName,
+   companyCountry: this.props.editContact.companyCountry,
+   companyWWW: this.props.editContact.companyWWW,
+   companyProffesion: this.props.editContact.companyProffesion,
+   contactName: this.props.editContact.contactName,
+   contactEmail: this.props.editContact.contactEmail,
+   contactPhone: this.props.editContact.contactPhone,
+   contactPosition: this.props.editContact.contactPosition,
+   description: this.props.editContact.description,
+   userId: this.props.editContact.userId
+  });
  }
  handleEditContact = e => {
   e.preventDefault();
@@ -25,6 +42,39 @@ class FromEdit extends React.Component {
  };
  handleSaveChange = e => {
   e.preventDefault();
+  const {
+   companyName,
+   companyCountry,
+   companyWWW,
+   companyProffesion,
+   contactName,
+   contactEmail,
+   contactPhone,
+   contactPosition,
+   description,
+   userId
+  } = this.state;
+  const editContact = {
+   companyName,
+   companyCountry,
+   companyWWW,
+   companyProffesion,
+   contactName,
+   contactEmail,
+   contactPhone,
+   contactPosition,
+   description,
+   userId
+  };
+  fetch(`http://localhost:4000/contacts/${this.props.editContact.id}`, {
+   method: 'PUT',
+   headers: {
+    'Content-Type': 'application/json'
+   },
+   body: JSON.stringify(editContact)
+  })
+   .then(response => response.text())
+   .catch(error => console.error('Error:', error));
   alert('Your change has been saved');
  };
  render() {
@@ -32,6 +82,11 @@ class FromEdit extends React.Component {
    <section className={styles.wrapper}>
     <div className={styles.addContact}>
      <div className={styles.addContactText}>
+      <Link to="/">
+       <button className={styles.crossBtn}>
+        <img src={Cross} alt={'cross'} />
+       </button>
+      </Link>
       <h1>Edit contact basic information.</h1>
       <span>
        If you would like to update some information, please replace new value.
@@ -63,6 +118,16 @@ class FromEdit extends React.Component {
         size={'short'}
         name="companyCountry"
         value={this.state.companyCountry}
+        onChange={e => {
+         this.handleEditContact(e);
+        }}
+       />
+       <Input
+        type={'text'}
+        placeholder={'proffesion.'}
+        size={'short'}
+        name="companyProffesion"
+        value={this.state.companyProffesion}
         onChange={e => {
          this.handleEditContact(e);
         }}
@@ -99,10 +164,10 @@ class FromEdit extends React.Component {
        />
        <Input
         type={'text'}
-        placeholder={'profesion.'}
+        placeholder={'position.'}
         size={'short'}
-        name="contactProfesion"
-        value={this.state.contactProfesion}
+        name="contactPosition"
+        value={this.state.contactPosition}
         onChange={e => {
          this.handleEditContact(e);
         }}

@@ -11,7 +11,7 @@ import styles from './MainPannel.module.scss';
 
 const MainContent = ({ user, contacts, handleEditContact }) => (
  <main className={styles.wrapper}>
-  <Welcombar userData={user} />
+  <Welcombar userData={user} contactData={contacts} />
   <Mainbar
    userData={user}
    contactData={contacts}
@@ -19,9 +19,9 @@ const MainContent = ({ user, contacts, handleEditContact }) => (
   />
  </main>
 );
-const Addcontetn = () => (
+const Addcontetn = ({ user }) => (
  <main className={styles.wrapper}>
-  <FormAddContact />
+  <FormAddContact user={user} />
  </main>
 );
 
@@ -32,9 +32,9 @@ class MainPannel extends React.Component {
    contactToEdit: undefined
   };
  }
- handleContactToEdit = (e, user) => {
+ handleContactToEdit = (e, userContacts) => {
   e.preventDefault();
-  this.setState({ contactToEdit: user });
+  this.setState({ contactToEdit: userContacts });
  };
  render() {
   return (
@@ -53,10 +53,13 @@ class MainPannel extends React.Component {
         />
        )}
       />
-      <Route path="/addcontact" component={Addcontetn} />
+      <Route
+       path="/addcontact"
+       component={() => <Addcontetn user={this.props.user} />}
+      />
       <Route
        path="/editcontact"
-       component={() => <Formedit user={this.state.contactToEdit} />}
+       component={() => <Formedit editContact={this.state.contactToEdit} />}
       />
       <Route
        path="/profile"
