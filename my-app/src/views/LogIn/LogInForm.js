@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './LogIn.module.scss';
+import styles from './LogInForm.module.scss';
 import SingIn from './SingIn';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -8,7 +8,8 @@ class LoggIn extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   singIn: false
+   singIn: false,
+   newUser: undefined
   };
  }
 
@@ -19,6 +20,10 @@ class LoggIn extends React.Component {
  handleSingOut = e => {
   e.preventDefault();
   this.setState({ singIn: false });
+ };
+ addNewUser = (e, newPerson) => {
+  e.preventDefault();
+  this.setState({ newUser: newPerson });
  };
  render() {
   const singInText = (
@@ -64,9 +69,7 @@ class LoggIn extends React.Component {
        singOut={e => {
         this.handleSingOut(e);
        }}
-       eventHandle={e => {
-        this.handleSingOut(e);
-       }}
+       eventHandle={this.handleSingOut}
       />
      ) : (
       singInText

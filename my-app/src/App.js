@@ -1,20 +1,30 @@
 import React from 'react';
 import styles from './App.module.scss';
-import LogIn from './views/LogIn/LogIn';
-import Header from './views/LogIn/Header';
-import Motto from './views/LogIn/Motto';
-import Footer from './views/LogIn/Footer';
-import MainPannel from './views/Main/Main';
-import data from './data/data.json';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginPannel from './views/LogIn/LogInPannel';
+import MainPannel from './views/Main/MainPannel';
 
 class App extends React.Component {
  state = {
-  users: [...data.users],
+  users: [],
+  contacts: [],
   userName: '',
   password: '',
   user: undefined
  };
+
+ componentDidMount() {
+  fetch(`http://localhost:4000/users`)
+   .then(resp => resp.json())
+   .then(resp => {
+    return this.setState({ users: [...resp] });
+   });
+  fetch(`http://localhost:4000/contacts`)
+   .then(resp => resp.json())
+   .then(resp => {
+    return this.setState({ contacts: [...resp] });
+   });
+ }
+
  handleChangeLogIn = e => {
   e.preventDefault();
   this.setState({ [e.target.name]: e.target.value });
@@ -26,19 +36,17 @@ class App extends React.Component {
     user.loggIn === this.state.userName && user.password === this.state.password
    );
   });
-  this.setState({ user: matchingUser });
+  this.setState({ userName: '', password: '', user: matchingUser });
  };
  handleLogOut = e => {
   e.preventDefault();
-  this.setState({ logIn: false });
+  this.setState({ user: undefined });
  };
  render() {
   if (this.state.user === undefined) {
    return (
     <div className={styles.wrapper}>
-     <Header />
-     <Motto />
-     <LogIn
+     <LoginPannel
       onChangeFn={e => this.handleChangeLogIn(e)}
       onClickFn={e => {
        this.handleLoggin(e);
@@ -46,7 +54,6 @@ class App extends React.Component {
       valueUser={this.state.userName}
       valuePassword={this.state.password}
      />
-     <Footer />
     </div>
    );
   } else {
@@ -54,6 +61,7 @@ class App extends React.Component {
     <div className={styles.wrapper}>
      <MainPannel
       user={this.state.user}
+      contacts={this.state.contacts}
       logOut={e => {
        this.handleLogOut(e);
       }}
@@ -65,3 +73,9 @@ class App extends React.Component {
 }
 
 export default App;
+
+//Usuwanie kontaktu z usera
+//Szukanie po kraju/profesji/nazwie -> bład
+//fetch --> Json serwer --> firebase
+//refactoring
+//deploing-->netlify

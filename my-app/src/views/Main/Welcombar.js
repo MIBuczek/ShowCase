@@ -1,23 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Welcomebar.module.scss';
-const Welcombar = ({ userData }) => {
- return (
-  <header className={styles.wrapper}>
-   <div className={styles.welcomeBar}>
-    <h2>Welcome {userData.loggIn}</h2>
-    <h3>
-     {userData.position} at {userData.company}
-    </h3>
-    <span>You have {userData.contacts.length} buissnes cards</span>
-   </div>
-   <Link to="/addcontact">
-    <button type="button" className={styles.addBtn}>
-     add new contact.
-    </button>
-   </Link>
-  </header>
- );
-};
+
+class Welcombar extends React.Component {
+ constructor(props) {
+  super(props);
+  this.state = {
+   userContacts: 0
+  };
+ }
+ componentDidMount() {
+  const userContacts = this.props.contactData.filter(contact => {
+   return contact.userId === this.props.userData.id && contact;
+  });
+  this.setState({ userContacts: [...userContacts].length });
+ }
+ render() {
+  return (
+   <header className={styles.wrapper}>
+    <div className={styles.welcomeBar}>
+     <h2>Welcome {this.props.userData.loggIn}</h2>
+     <h3>
+      {this.props.userData.position} at {this.props.userData.company}
+     </h3>
+     <span>You have {this.state.userContacts} buissnes cards</span>
+    </div>
+    <Link to="/addcontact">
+     <button type="button" className={styles.addBtn}>
+      add new contact.
+     </button>
+    </Link>
+   </header>
+  );
+ }
+}
 
 export default Welcombar;

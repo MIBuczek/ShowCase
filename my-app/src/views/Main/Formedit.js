@@ -6,11 +6,10 @@ import Button from '../../components/Button';
 import Textarea from '../../components/Textarea';
 import styles from './Formadd.module.scss';
 
-class FromAdd extends React.Component {
+class FromEdit extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   userId: this.props.user.id,
    companyName: '',
    companyCountry: '',
    companyWWW: '',
@@ -19,14 +18,29 @@ class FromAdd extends React.Component {
    contactEmail: '',
    contactPhone: '',
    contactPosition: '',
-   description: ''
+   description: '',
+   userId: ''
   };
  }
- handleAddContact = e => {
+ componentDidMount() {
+  this.setState({
+   companyName: this.props.editContact.companyName,
+   companyCountry: this.props.editContact.companyCountry,
+   companyWWW: this.props.editContact.companyWWW,
+   companyProffesion: this.props.editContact.companyProffesion,
+   contactName: this.props.editContact.contactName,
+   contactEmail: this.props.editContact.contactEmail,
+   contactPhone: this.props.editContact.contactPhone,
+   contactPosition: this.props.editContact.contactPosition,
+   description: this.props.editContact.description,
+   userId: this.props.editContact.userId
+  });
+ }
+ handleEditContact = e => {
   e.preventDefault();
   this.setState({ [e.target.name]: e.target.value });
  };
- handleUploadContact = e => {
+ handleSaveChange = e => {
   e.preventDefault();
   const {
    companyName,
@@ -40,7 +54,7 @@ class FromAdd extends React.Component {
    description,
    userId
   } = this.state;
-  const newContact = {
+  const editContact = {
    companyName,
    companyCountry,
    companyWWW,
@@ -52,15 +66,16 @@ class FromAdd extends React.Component {
    description,
    userId
   };
-  fetch(`http://localhost:4000/contacts`, {
-   method: 'POST',
+  fetch(`http://localhost:4000/contacts/${this.props.editContact.id}`, {
+   method: 'PUT',
    headers: {
     'Content-Type': 'application/json'
    },
-   body: JSON.stringify(newContact)
+   body: JSON.stringify(editContact)
   })
    .then(response => response.text())
    .catch(error => console.error('Error:', error));
+  alert('Your change has been saved');
  };
  render() {
   return (
@@ -72,47 +87,49 @@ class FromAdd extends React.Component {
         <img src={Cross} alt={'cross'} />
        </button>
       </Link>
-      <h1>You are adding new contact to your client base.</h1>
-      <span>please complete all required fields.</span>
+      <h1>Edit contact basic information.</h1>
+      <span>
+       If you would like to update some information, please replace new value.
+      </span>
      </div>
      <form className={styles.addContactForm}>
       <div className={styles.addContactFormPart}>
        <Input
         type={'text'}
         placeholder={'company name.'}
-        value={this.state.companyName}
         name="companyName"
+        value={this.state.companyName}
         onChange={e => {
-         this.handleAddContact(e);
+         this.handleEditContact(e);
         }}
        />
        <Input
         type={'text'}
         placeholder={'www.'}
-        size={'short'}
         name="companyWWW"
         value={this.state.companyWWW}
         onChange={e => {
-         this.handleAddContact(e);
+         this.handleEditContact(e);
         }}
        />
        <Input
         type={'text'}
-        placeholder={'country.'}
+        placeholder={'conutry.'}
         size={'short'}
         name="companyCountry"
         value={this.state.companyCountry}
         onChange={e => {
-         this.handleAddContact(e);
+         this.handleEditContact(e);
         }}
        />
        <Input
         type={'text'}
         placeholder={'proffesion.'}
+        size={'short'}
         name="companyProffesion"
         value={this.state.companyProffesion}
         onChange={e => {
-         this.handleAddContact(e);
+         this.handleEditContact(e);
         }}
        />
       </div>
@@ -123,44 +140,55 @@ class FromAdd extends React.Component {
         name="contactName"
         value={this.state.contactName}
         onChange={e => {
-         this.handleAddContact(e);
+         this.handleEditContact(e);
+        }}
+       />
+       <Input
+        type={'text'}
+        placeholder={'e-mail.'}
+        name="contactPhone"
+        value={this.state.contactEmail}
+        onChange={e => {
+         this.handleEditContact(e);
         }}
        />
        <Input
         type={'text'}
         placeholder={'phone.'}
         size={'short'}
-        value={this.state.contactPhone}
         name="contactPhone"
+        value={this.state.contactPhone}
         onChange={e => {
-         this.handleAddContact(e);
+         this.handleEditContact(e);
         }}
        />
        <Input
         type={'text'}
-        placeholder={'e-mail.'}
+        placeholder={'position.'}
         size={'short'}
-        name="contactEmail"
-        value={this.state.contactEmail}
+        name="contactPosition"
+        value={this.state.contactPosition}
         onChange={e => {
-         this.handleAddContact(e);
+         this.handleEditContact(e);
         }}
        />
        <Textarea
         type={'text'}
         placeholder={'description.'}
-        value={this.state.description}
         name="description"
+        value={this.state.description}
         onChange={e => {
-         this.handleAddContact(e);
+         this.handleEditContact(e);
         }}
        />
       </div>
      </form>
      <Button
       type={'button'}
-      value={'add.'}
-      eventHandle={e => this.handleUploadContact(e)}
+      value={'save.'}
+      eventHandle={e => {
+       this.handleSaveChange(e);
+      }}
      />
     </div>
    </section>
@@ -168,4 +196,4 @@ class FromAdd extends React.Component {
  }
 }
 
-export default FromAdd;
+export default FromEdit;

@@ -15,7 +15,7 @@
  flex-direction: row;
  justify-content: space-evenly;
  width: 617px;
- height: 220px;
+ min-height: 220px;
  background: #c4c4c4;
  border: 2px solid #ffffff;
  margin: 20px;
@@ -35,6 +35,10 @@
    line-height: 17px;
    letter-spacing: -0.015em;
    color: #ffffff;
+   a {
+    text-decoration: none;
+    color: #ffffff;
+   }
   }
  }
  &Data {
@@ -49,11 +53,13 @@
    font-weight: 600;
    font-size: 36px;
    line-height: 44px;
+   margin: 10px 0;
   }
   h2 {
    font-weight: 600;
    font-size: 24px;
    line-height: 29px;
+   margin: 8px 0;
   }
   span {
    color: black;
