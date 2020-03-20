@@ -14,8 +14,7 @@ class Profile extends React.Component {
    dublicatePassword: this.props.user.password,
    company: this.props.user.company,
    position: this.props.user.position,
-   proffesion: this.props.user.proffesion,
-   email: this.props.user.email
+   proffesion: this.props.user.proffesion
   };
  }
  handleEditUser = e => {
@@ -24,25 +23,49 @@ class Profile extends React.Component {
  };
  handleSaveChange = e => {
   e.preventDefault();
-  const { loggIn, password, company, position, proffesion, email } = this.state;
-  const upDatePerson = {
+  const {
    loggIn,
    password,
+   dublicatePassword,
    company,
-   proffesion,
    position,
-   email
-  };
-  fetch(`http://localhost:4000/users/${this.props.user.id}`, {
-   method: 'PUT',
-   headers: {
-    'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(upDatePerson)
-  })
-   .then(response => response.text())
-   .catch(error => console.error('Error:', error));
-  alert('Your change has been saved');
+   proffesion
+  } = this.state;
+  const errors = [];
+  if (
+   loggIn.length < 2 &&
+   company.length < 2 &&
+   proffesion.length < 2 &&
+   position.length < 2
+  ) {
+   errors.push('File must hes at liest 2 letter word.');
+   alert('File must hes at liest 2 letter word.');
+  }
+  if (password !== dublicatePassword) {
+   errors.push('password and double password must be identify,');
+   alert('password and double password must be identify,');
+  }
+  if (errors.length === 0) {
+   const upDatePerson = {
+    loggIn,
+    password,
+    company,
+    proffesion,
+    position
+   };
+   fetch(`http://localhost:4000/users/${this.props.user.id}`, {
+    method: 'PUT',
+    headers: {
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(upDatePerson)
+   })
+    .then(response => response.text())
+    .catch(error => console.error('Error:', error));
+   alert('Your change has been saved');
+  } else {
+   alert('Please fill in all fields correctly.');
+  }
  };
  render() {
   return (
@@ -106,15 +129,6 @@ class Profile extends React.Component {
        placeholder={'position.'}
        name={'position'}
        value={this.state.position}
-       onChange={e => {
-        this.handleEditUser(e);
-       }}
-      />
-      <Input
-       type={'text'}
-       placeholder={'email.'}
-       name={'email'}
-       value={this.state.email}
        onChange={e => {
         this.handleEditUser(e);
        }}

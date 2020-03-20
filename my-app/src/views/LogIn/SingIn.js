@@ -28,15 +28,40 @@ class SingIn extends React.Component {
  };
  handleSingIn = e => {
   e.preventDefault();
-  const { loggIn, password, company, proffesion, position } = this.state;
-  const newPerson = {
+  const {
    loggIn,
    password,
+   dublicatePassword,
    company,
    proffesion,
    position
-  };
-  if (this.state.checked === true) {
+  } = this.state;
+
+  const errors = [];
+  if (
+   loggIn.length < 2 &&
+   company.length < 2 &&
+   proffesion.length < 2 &&
+   position.length < 2
+  ) {
+   errors.push('File must hes at liest 2 letter word.');
+   alert('File must hes at liest 2 letter word.');
+  }
+  if (password !== dublicatePassword) {
+   errors.push('password and double password must be identify,');
+   alert('password and double password must be identify,');
+  }
+  if (this.state.checked === false) {
+   alert('Please accept requlations');
+  }
+  if (this.state.checked === true && errors.length === 0) {
+   const newPerson = {
+    loggIn,
+    password,
+    company,
+    proffesion,
+    position
+   };
    fetch('http://localhost:4000/users', {
     method: 'POST',
     headers: {
@@ -46,8 +71,9 @@ class SingIn extends React.Component {
    })
     .then(response => response.text())
     .catch(error => console.error('Error:', error));
+   alert('Congratulation, you sing in to ShowCase!');
   } else {
-   alert('Please accept requlations');
+   alert('Please fill in all fields correctly.');
   }
  };
 

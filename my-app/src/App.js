@@ -74,8 +74,6 @@ class App extends React.Component {
 
 export default App;
 
-//Usuwanie kontaktu z usera
-//Szukanie po kraju/profesji/nazwie -> bład
 //fetch --> Json serwer --> firebase
 //refactoring
 //deploing-->netlify
