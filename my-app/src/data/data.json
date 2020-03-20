@@ -28,36 +28,21 @@
       "proffesion": "Webmastering"
     },
     {
-      "loggIn": "",
-      "password": "",
-      "company": "",
-      "proffesion": "",
-      "position": "",
+      "loggIn": "Tester",
+      "password": "test",
+      "company": "TesterComp",
+      "proffesion": "testing",
+      "position": "tester",
+      "email": "teste@test.comp.pl",
       "id": 4
     },
     {
-      "loggIn": "TEST",
+      "loggIn": "Test",
       "password": "test",
-      "company": "TestCompany",
+      "company": "TestComp",
       "proffesion": "testing",
       "position": "tester",
       "id": 5
-    },
-    {
-      "loggIn": "TEST",
-      "password": "test",
-      "company": "TestCompany",
-      "proffesion": "testing",
-      "position": "tester",
-      "id": 6
-    },
-    {
-      "loggIn": "TEST",
-      "password": "test",
-      "company": "TestCompany",
-      "proffesion": "testing",
-      "position": "tester",
-      "id": 7
     }
   ],
   "contacts": [
@@ -138,6 +123,19 @@
       "contactPhone": "+42602256841",
       "contactPosition": "Business developer manager",
       "description": "Possible reseller of our product"
+    },
+    {
+      "companyName": "Printers",
+      "companyCountry": "Poland",
+      "companyWWW": "www.printe.pl",
+      "companyProffesion": "printing",
+      "contactName": "Printerosław",
+      "contactEmail": "office@pirnt.pl",
+      "contactPhone": "123456",
+      "contactPosition": "",
+      "description": "Printting company, open to copperation.",
+      "userId": 4,
+      "id": 7
     }
   ]
 }

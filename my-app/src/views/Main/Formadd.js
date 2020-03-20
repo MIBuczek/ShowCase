@@ -40,27 +40,45 @@ class FromAdd extends React.Component {
    description,
    userId
   } = this.state;
-  const newContact = {
-   companyName,
-   companyCountry,
-   companyWWW,
-   companyProffesion,
-   contactName,
-   contactEmail,
-   contactPhone,
-   contactPosition,
-   description,
-   userId
-  };
-  fetch(`http://localhost:4000/contacts`, {
-   method: 'POST',
-   headers: {
-    'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(newContact)
-  })
-   .then(response => response.text())
-   .catch(error => console.error('Error:', error));
+  const errors = [];
+  if (
+   companyName < 2 &&
+   companyCountry < 2 &&
+   companyWWW < 2 &&
+   companyProffesion < 2 &&
+   contactName < 2 &&
+   contactEmail < 2 &&
+   contactPhone < 2 &&
+   contactPosition < 2
+  ) {
+   errors.push('File must hes at liest 2 letter word.');
+   alert('File must hes at liest 2 letter word.');
+  }
+  if (errors.length === 0) {
+   const newContact = {
+    companyName,
+    companyCountry,
+    companyWWW,
+    companyProffesion,
+    contactName,
+    contactEmail,
+    contactPhone,
+    contactPosition,
+    description,
+    userId
+   };
+   fetch(`http://localhost:4000/contacts`, {
+    method: 'POST',
+    headers: {
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newContact)
+   })
+    .then(response => response.text())
+    .catch(error => console.error('Error:', error));
+  } else {
+   alert('Please fill in all fields correctly.');
+  }
  };
  render() {
   return (
