@@ -9,19 +9,20 @@ import Profile from './Profile';
 import Formedit from './Formedit';
 import styles from './MainPannel.module.scss';
 
-const MainContent = ({ user, contacts, handleEditContact }) => (
+const MainContent = ({ userId, users, contacts, handleEditContact }) => (
  <main className={styles.wrapper}>
-  <Welcombar userData={user} contactData={contacts} />
+  <Welcombar userData={users} userId={userId} contactData={contacts} />
   <Mainbar
-   userData={user}
+   userData={users}
+   userId={userId}
    contactData={contacts}
    handleEditContact={handleEditContact}
   />
  </main>
 );
-const Addcontetn = ({ user }) => (
+const Addcontetn = ({ userId, loadData }) => (
  <main className={styles.wrapper}>
-  <FormAddContact user={user} />
+  <FormAddContact userId={userId} loadData={loadData} />
  </main>
 );
 
@@ -47,7 +48,8 @@ class MainPannel extends React.Component {
        path="/"
        component={() => (
         <MainContent
-         user={this.props.user}
+         userId={this.props.userId}
+         users={this.props.users}
          contacts={this.props.contacts}
          handleEditContact={this.handleContactToEdit}
         />
@@ -55,16 +57,28 @@ class MainPannel extends React.Component {
       />
       <Route
        path="/addcontact"
-       component={() => <Addcontetn user={this.props.user} />}
+       component={() => (
+        <Addcontetn userId={this.props.userId} loadData={this.props.loadData} />
+       )}
       />
       <Route
        path="/editcontact"
-       component={() => <Formedit editContact={this.state.contactToEdit} />}
+       component={() => (
+        <Formedit
+         userId={this.props.userId}
+         editContact={this.state.contactToEdit}
+         loadData={this.props.loadData}
+        />
+       )}
       />
       <Route
        path="/profile"
        component={() => (
-        <Profile user={this.props.user} loadData={this.props.loadData} />
+        <Profile
+         userId={this.props.userId}
+         users={this.props.users}
+         loadData={this.props.loadData}
+        />
        )}
       />
      </Switch>

@@ -11,7 +11,9 @@ class Welcombar extends React.Component {
  }
  componentDidMount() {
   const userContacts = this.props.contactData.filter(contact => {
-   return contact.userId === this.props.userData.id && contact;
+   return (
+    contact.userId === this.props.userData[this.props.userId].id && contact
+   );
   });
   this.setState({ userContacts: [...userContacts].length });
  }
@@ -19,9 +21,10 @@ class Welcombar extends React.Component {
   return (
    <header className={styles.wrapper}>
     <div className={styles.welcomeBar}>
-     <h2>Welcome {this.props.userData.loggIn}</h2>
+     <h2>Welcome {this.props.userData[this.props.userId].loggIn}</h2>
      <h3>
-      {this.props.userData.position} at {this.props.userData.company}
+      {this.props.userData[this.props.userId].position} at{' '}
+      {this.props.userData[this.props.userId].company}
      </h3>
      <span>You have {this.state.userContacts} buissnes cards</span>
     </div>

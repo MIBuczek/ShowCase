@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../components/Input';
-import Button from '../../components/Button';
 import Cross from '../../assets/cross.png';
 import styles from './Profile.module.scss';
 
@@ -9,13 +8,23 @@ class Profile extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   loggIn: this.props.user.loggIn,
-   password: this.props.user.password,
-   dublicatePassword: this.props.user.password,
-   company: this.props.user.company,
-   position: this.props.user.position,
-   proffesion: this.props.user.proffesion
+   loggIn: '',
+   password: '',
+   dublicatePassword: '',
+   company: '',
+   position: '',
+   proffesion: ''
   };
+ }
+ componentDidMount() {
+  this.setState({
+   loggIn: this.props.users[this.props.userId].loggIn,
+   password: this.props.users[this.props.userId].password,
+   dublicatePassword: this.props.users[this.props.userId].password,
+   company: this.props.users[this.props.userId].company,
+   position: this.props.users[this.props.userId].position,
+   proffesion: this.props.users[this.props.userId].proffesion
+  });
  }
  handleEditUser = e => {
   e.preventDefault();
@@ -53,7 +62,7 @@ class Profile extends React.Component {
     proffesion,
     position
    };
-   fetch(`http://localhost:4000/users/${this.props.user.id}`, {
+   fetch(`http://localhost:4000/users/${this.props.userId + 1}`, {
     method: 'PUT',
     headers: {
      'Content-Type': 'application/json'
@@ -135,13 +144,15 @@ class Profile extends React.Component {
        }}
       />
      </form>
-     <Button
+     <button
+      className={styles.buttonSave}
       type={'button'}
-      value={'save change.'}
-      eventHandle={e => {
+      onClick={e => {
        this.handleSaveChange(e);
       }}
-     ></Button>
+     >
+      <Link to="/">save change.</Link>
+     </button>
     </div>
    </section>
   );

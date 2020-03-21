@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Cross from '../../assets/cross.png';
 import Input from '../../components/Input';
-import Button from '../../components/Button';
 import Textarea from '../../components/Textarea';
 import styles from './Formadd.module.scss';
 
@@ -10,7 +9,7 @@ class FromAdd extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   userId: this.props.user.id,
+   userId: this.props.userId,
    companyName: '',
    companyCountry: '',
    companyWWW: '',
@@ -75,6 +74,7 @@ class FromAdd extends React.Component {
     body: JSON.stringify(newContact)
    })
     .then(response => response.text())
+    .then(() => this.props.loadData())
     .catch(error => console.error('Error:', error));
   } else {
    alert('Please fill in all fields correctly.');
@@ -175,11 +175,13 @@ class FromAdd extends React.Component {
        />
       </div>
      </form>
-     <Button
+     <button
+      className={styles.buttonAdd}
       type={'button'}
-      value={'add.'}
-      eventHandle={e => this.handleUploadContact(e)}
-     />
+      onClick={e => this.handleUploadContact(e)}
+     >
+      <Link to="/">add.</Link>
+     </button>
     </div>
    </section>
   );

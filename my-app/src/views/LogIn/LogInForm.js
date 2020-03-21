@@ -66,6 +66,7 @@ class LoggIn extends React.Component {
      />
      {this.state.singIn ? (
       <SingIn
+       loadData={this.props.loadData}
        singOut={e => {
         this.handleSingOut(e);
        }}

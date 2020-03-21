@@ -19,6 +19,7 @@ const LoginPannel = ({
    onClickFn={onClickFn}
    valueUser={valueUser}
    valuePassword={valuePassword}
+   loadData={loadData}
   />
   <Footer />
  </>

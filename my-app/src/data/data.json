@@ -2,8 +2,8 @@
   "users": [
     {
       "loggIn": "MIBuczek",
-      "password": "buczek",
-      "company": "Credit Suiss1",
+      "password": "admin",
+      "company": "Credit Suiss",
       "proffesion": "Printing house",
       "position": "Account Manager",
       "id": 1
@@ -20,7 +20,7 @@
   "contacts": [
     {
       "id": 1,
-      "userId": 2,
+      "userId": 1,
       "companyName": "deepblue",
       "companyCountry": "United Kingdom",
       "companyWWW": "www.deepblue.co.uk",
@@ -32,8 +32,6 @@
       "description": "Contact after fairs in Munich. Interest of all moder product category"
     },
     {
-      "id": 2,
-      "userId": 1,
       "companyName": "l-shopteam",
       "companyCountry": "Czech Republic",
       "companyWWW": "www.l-shopteam.cz",
@@ -42,7 +40,9 @@
       "contactEmail": "r.hampl@l-shop-team.cz",
       "contactPhone": "+42602256841",
       "contactPosition": "Business developer manager",
-      "description": "Possible reseller of our product"
+      "description": "Possible reseller of our product",
+      "userId": 1,
+      "id": 2
     },
     {
       "companyName": "PAKETO",
