@@ -2,11 +2,10 @@
   "users": [
     {
       "loggIn": "MIBuczek",
-      "password": "buczek",
-      "company": "Adsystem",
+      "password": "admin",
+      "company": "Credit Suiss",
       "proffesion": "Printing house",
       "position": "Account Manager",
-      "email": "mibcoding@gmail.com",
       "id": 1
     },
     {
@@ -15,40 +14,13 @@
       "company": "SISK",
       "proffesion": "Marketing house",
       "position": "Office Manager",
-      "email": "sarab@gmail.com",
       "id": 2
-    },
-    {
-      "id": 3,
-      "loggIn": "Niko",
-      "password": "Niko2",
-      "email": "niko@coding.com",
-      "company": "mibcoding",
-      "position": "programist",
-      "proffesion": "Webmastering"
-    },
-    {
-      "loggIn": "Tester",
-      "password": "test",
-      "company": "TesterComp",
-      "proffesion": "testing",
-      "position": "tester",
-      "email": "teste@test.comp.pl",
-      "id": 4
-    },
-    {
-      "loggIn": "Test",
-      "password": "test",
-      "company": "TestComp",
-      "proffesion": "testing",
-      "position": "tester",
-      "id": 5
     }
   ],
   "contacts": [
     {
       "id": 1,
-      "userId": 2,
+      "userId": 1,
       "companyName": "deepblue",
       "companyCountry": "United Kingdom",
       "companyWWW": "www.deepblue.co.uk",
@@ -60,8 +32,6 @@
       "description": "Contact after fairs in Munich. Interest of all moder product category"
     },
     {
-      "id": 2,
-      "userId": 1,
       "companyName": "l-shopteam",
       "companyCountry": "Czech Republic",
       "companyWWW": "www.l-shopteam.cz",
@@ -70,7 +40,9 @@
       "contactEmail": "r.hampl@l-shop-team.cz",
       "contactPhone": "+42602256841",
       "contactPosition": "Business developer manager",
-      "description": "Possible reseller of our product"
+      "description": "Possible reseller of our product",
+      "userId": 1,
+      "id": 2
     },
     {
       "companyName": "PAKETO",
@@ -82,7 +54,7 @@
       "contactPhone": "+42602554535",
       "contactPosition": "Sales manager",
       "description": "Contact after fairs in Munich. Interest of all moder product category",
-      "id": 3,
+      "id": 1,
       "userId": 1
     },
     {
@@ -100,29 +72,29 @@
     },
     {
       "id": 5,
-      "userId": 2,
-      "companyName": "deepblue",
-      "companyCountry": "United Kingdom",
-      "companyWWW": "www.deepblue.co.uk",
-      "companyProffesion": "E-shop",
-      "contactName": "Phil Worsfold",
-      "contactEmail": "philw@deepblue.co.uk",
-      "contactPhone": "+442286805847",
-      "contactPosition": "Director",
-      "description": "Contact after fairs in Munich. Interest of all moder product category"
+      "userId": 1,
+      "companyName": "SISK Siechnice",
+      "companyCountry": "Polska",
+      "companyWWW": "www.sisk-siechnice.pl",
+      "companyProffesion": "Spółka komunalna",
+      "contactName": "Sara Gierszewska",
+      "contactEmail": "saragierszewska@sisk.pl",
+      "contactPhone": "+48889000230",
+      "contactPosition": "Asystent manager",
+      "description": "Chcą przeprowadzić akcej promocyjną, chroń zieleń"
     },
     {
       "id": 6,
-      "userId": 3,
-      "companyName": "l-shopteam",
-      "companyCountry": "Czech Republic",
-      "companyWWW": "www.l-shopteam.cz",
-      "companyProffesion": "Sport e-shop",
-      "contactName": "Richard Hamp",
-      "contactEmail": "r.hampl@l-shop-team.cz",
-      "contactPhone": "+42602256841",
-      "contactPosition": "Business developer manager",
-      "description": "Possible reseller of our product"
+      "userId": 2,
+      "companyName": "Provident",
+      "companyCountry": "Poska",
+      "companyWWW": "www.provident.pl",
+      "companyProffesion": "Porzyczki",
+      "contactName": "Andrzej Gierszewski",
+      "contactEmail": "gierszewski@provident.pl",
+      "contactPhone": "+48666061715",
+      "contactPosition": "Doradca klienta exprert",
+      "description": "Potencjalny koncowy klient"
     },
     {
       "companyName": "Printers",
@@ -134,7 +106,7 @@
       "contactPhone": "123456",
       "contactPosition": "",
       "description": "Printting company, open to copperation.",
-      "userId": 4,
+      "userId": 2,
       "id": 7
     }
   ]

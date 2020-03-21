@@ -9,10 +9,10 @@ class App extends React.Component {
   contacts: [],
   userName: '',
   password: '',
-  user: undefined
+  userId: undefined
  };
 
- componentDidMount() {
+ loadData = () => {
   fetch(`http://localhost:4000/users`)
    .then(resp => resp.json())
    .then(resp => {
@@ -23,6 +23,10 @@ class App extends React.Component {
    .then(resp => {
     return this.setState({ contacts: [...resp] });
    });
+ };
+
+ componentDidMount() {
+  this.loadData();
  }
 
  handleChangeLogIn = e => {
@@ -36,14 +40,18 @@ class App extends React.Component {
     user.loggIn === this.state.userName && user.password === this.state.password
    );
   });
-  this.setState({ userName: '', password: '', user: matchingUser });
+  if (matchingUser) {
+   this.setState({ userName: '', password: '', userId: matchingUser.id - 1 });
+  } else {
+   this.setState({ userId: undefined });
+  }
  };
  handleLogOut = e => {
   e.preventDefault();
-  this.setState({ user: undefined });
+  this.setState({ userId: undefined });
  };
  render() {
-  if (this.state.user === undefined) {
+  if (this.state.userId === undefined) {
    return (
     <div className={styles.wrapper}>
      <LoginPannel
@@ -53,6 +61,7 @@ class App extends React.Component {
       }}
       valueUser={this.state.userName}
       valuePassword={this.state.password}
+      loadData={this.loadData}
      />
     </div>
    );
@@ -60,11 +69,13 @@ class App extends React.Component {
    return (
     <div className={styles.wrapper}>
      <MainPannel
-      user={this.state.user}
+      userId={this.state.userId}
+      users={this.state.users}
       contacts={this.state.contacts}
       logOut={e => {
        this.handleLogOut(e);
       }}
+      loadData={this.loadData}
      />
     </div>
    );

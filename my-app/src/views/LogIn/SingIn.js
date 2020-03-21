@@ -70,6 +70,7 @@ class SingIn extends React.Component {
     body: JSON.stringify(newPerson)
    })
     .then(response => response.text())
+    .then(() => this.props.loadData())
     .catch(error => console.error('Error:', error));
    alert('Congratulation, you sing in to ShowCase!');
   } else {

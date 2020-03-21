@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Cross from '../../assets/cross.png';
 import Input from '../../components/Input';
-import Button from '../../components/Button';
 import Textarea from '../../components/Textarea';
 import styles from './Formadd.module.scss';
 
@@ -90,6 +89,7 @@ class FromEdit extends React.Component {
     body: JSON.stringify(editContact)
    })
     .then(response => response.text())
+    .then(() => this.props.loadData())
     .catch(error => console.error('Error:', error));
    alert('Your change has been saved');
   } else {
@@ -202,13 +202,15 @@ class FromEdit extends React.Component {
        />
       </div>
      </form>
-     <Button
+     <button
+      className={styles.buttonAdd}
       type={'button'}
-      value={'save.'}
-      eventHandle={e => {
+      onClick={e => {
        this.handleSaveChange(e);
       }}
-     />
+     >
+      <Link to="/">save.</Link>
+     </button>
     </div>
    </section>
   );

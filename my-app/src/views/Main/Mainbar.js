@@ -16,7 +16,9 @@ class Mainbar extends React.Component {
  }
  componentDidMount() {
   const userContacts = this.props.contactData.filter(contact => {
-   return contact.userId === this.props.userData.id && contact;
+   return (
+    contact.userId === this.props.userData[this.props.userId].id && contact
+   );
   });
   this.setState({ userContacts: [...userContacts] });
  }
@@ -52,7 +54,9 @@ class Mainbar extends React.Component {
   e.preventDefault();
   fetch(`http://localhost:4000/contacts/${id}`, {
    method: 'DELETE'
-  }).then(response => response.json());
+  })
+   .then(response => response.json())
+   .then(() => this.props.loadData());
  };
  render() {
   return (
