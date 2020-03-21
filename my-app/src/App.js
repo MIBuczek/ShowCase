@@ -12,7 +12,7 @@ class App extends React.Component {
   user: undefined
  };
 
- componentDidMount() {
+ loadData = () => {
   fetch(`http://localhost:4000/users`)
    .then(resp => resp.json())
    .then(resp => {
@@ -23,6 +23,10 @@ class App extends React.Component {
    .then(resp => {
     return this.setState({ contacts: [...resp] });
    });
+ };
+
+ componentDidMount() {
+  this.loadData();
  }
 
  handleChangeLogIn = e => {
@@ -65,6 +69,7 @@ class App extends React.Component {
       logOut={e => {
        this.handleLogOut(e);
       }}
+      loadData={this.loadData}
      />
     </div>
    );

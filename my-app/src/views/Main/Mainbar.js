@@ -53,6 +53,7 @@ class Mainbar extends React.Component {
   fetch(`http://localhost:4000/contacts/${id}`, {
    method: 'DELETE'
   }).then(response => response.json());
+  this.props.loadData();
  };
  render() {
   return (

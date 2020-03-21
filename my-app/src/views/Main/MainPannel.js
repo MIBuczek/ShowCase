@@ -63,7 +63,9 @@ class MainPannel extends React.Component {
       />
       <Route
        path="/profile"
-       component={() => <Profile user={this.props.user} />}
+       component={() => (
+        <Profile user={this.props.user} loadData={this.props.loadData} />
+       )}
       />
      </Switch>
      <Footer />

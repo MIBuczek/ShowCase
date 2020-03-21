@@ -61,6 +61,7 @@ class Profile extends React.Component {
     body: JSON.stringify(upDatePerson)
    })
     .then(response => response.text())
+    .then(() => this.props.loadData())
     .catch(error => console.error('Error:', error));
    alert('Your change has been saved');
   } else {
