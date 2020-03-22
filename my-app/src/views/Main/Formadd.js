@@ -9,7 +9,7 @@ class FromAdd extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   userId: this.props.userId,
+   userId: this.props.userId + 1,
    companyName: '',
    companyCountry: '',
    companyWWW: '',
