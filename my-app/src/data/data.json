@@ -33,7 +33,7 @@
     },
     {
       "companyName": "l-shopteam",
-      "companyCountry": "Czech Republic",
+      "companyCountry": "Czechy",
       "companyWWW": "www.l-shopteam.cz",
       "companyProffesion": "Sport shop",
       "contactName": "Richard Hamp",
@@ -46,7 +46,7 @@
     },
     {
       "companyName": "PAKETO",
-      "companyCountry": "Czech",
+      "companyCountry": "Czechy",
       "companyWWW": "www.paketo.cz",
       "companyProffesion": "AV Agency",
       "contactName": "Marcela Klabnikova",
@@ -87,7 +87,7 @@
       "id": 6,
       "userId": 2,
       "companyName": "Provident",
-      "companyCountry": "Poska",
+      "companyCountry": "Polska",
       "companyWWW": "www.provident.pl",
       "companyProffesion": "Porzyczki",
       "contactName": "Andrzej Gierszewski",
@@ -98,7 +98,7 @@
     },
     {
       "companyName": "Printers",
-      "companyCountry": "Poland",
+      "companyCountry": "Polska",
       "companyWWW": "www.printe.pl",
       "companyProffesion": "printing",
       "contactName": "Printerosław",
