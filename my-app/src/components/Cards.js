@@ -21,7 +21,10 @@ const Cards = ({
        >
         <Link to="/editcontact">edit.</Link>
        </button>
-       <button type="button" onClick={e => handleDeleteContact(e, contact.id)}>
+       <button
+        type="button"
+        onClick={e => handleDeleteContact(e, contact.contacId)}
+       >
         delete.
        </button>
       </div>

@@ -6,25 +6,39 @@ class Welcombar extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
+   user: {
+    loggIn: '',
+    password: '',
+    company: '',
+    proffesion: '',
+    position: '',
+    id: 1
+   },
    userContacts: 0
   };
  }
  componentDidMount() {
-  const userContacts = this.props.contactData.filter(contact => {
-   return (
-    contact.userId === this.props.userData[this.props.userId].id && contact
-   );
+  const currnetUser = this.props.userData.find(user => {
+   if (user.userId === this.props.userId) {
+    return user;
+   }
+   return null;
   });
-  this.setState({ userContacts: [...userContacts].length });
+  const userContacts = this.props.contactData.filter(contact => {
+   if (contact.userId === this.props.userId) {
+    return contact;
+   }
+   return null;
+  });
+  this.setState({ user: currnetUser, userContacts: [...userContacts].length });
  }
  render() {
   return (
    <header className={styles.wrapper}>
     <div className={styles.welcomeBar}>
-     <h2>Welcome {this.props.userData[this.props.userId].loggIn}</h2>
+     <h2>Welcome {this.state.user.loggIn}</h2>
      <h3>
-      {this.props.userData[this.props.userId].position} at{' '}
-      {this.props.userData[this.props.userId].company}
+      {this.state.user.position} at {this.state.user.company}
      </h3>
      <span>You have {this.state.userContacts} buissnes cards</span>
     </div>

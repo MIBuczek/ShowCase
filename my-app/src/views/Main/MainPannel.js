@@ -9,7 +9,13 @@ import Profile from './Profile';
 import Formedit from './Formedit';
 import styles from './MainPannel.module.scss';
 
-const MainContent = ({ userId, users, contacts, handleEditContact }) => (
+const MainContent = ({
+ userId,
+ users,
+ contacts,
+ handleEditContact,
+ loadData
+}) => (
  <main className={styles.wrapper}>
   <Welcombar userData={users} userId={userId} contactData={contacts} />
   <Mainbar
@@ -17,6 +23,7 @@ const MainContent = ({ userId, users, contacts, handleEditContact }) => (
    userId={userId}
    contactData={contacts}
    handleEditContact={handleEditContact}
+   loadData={loadData}
   />
  </main>
 );
@@ -52,6 +59,7 @@ class MainPannel extends React.Component {
          users={this.props.users}
          contacts={this.props.contacts}
          handleEditContact={this.handleContactToEdit}
+         loadData={this.props.loadData}
         />
        )}
       />
@@ -76,7 +84,7 @@ class MainPannel extends React.Component {
        component={() => (
         <Profile
          userId={this.props.userId}
-         users={this.props.users}
+         usersData={this.props.users}
          loadData={this.props.loadData}
         />
        )}

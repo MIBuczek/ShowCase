@@ -4,12 +4,13 @@ import Cross from '../../assets/cross.png';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import styles from './Formadd.module.scss';
+import db from '../../Firebase';
 
 class FromAdd extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   userId: this.props.userId + 1,
+   userId: this.props.userId,
    companyName: '',
    companyCountry: '',
    companyWWW: '',
@@ -66,16 +67,11 @@ class FromAdd extends React.Component {
     description,
     userId
    };
-   fetch(`http://localhost:4000/contacts`, {
-    method: 'POST',
-    headers: {
-     'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(newContact)
-   })
-    .then(response => response.text())
-    .then(() => this.props.loadData())
-    .catch(error => console.error('Error:', error));
+   db
+    .collection('contacts')
+    .add(newContact)
+    .then(() => this.props.loadData());
+   alert('your contacts has been saved.');
   } else {
    alert('Please fill in all fields correctly.');
   }

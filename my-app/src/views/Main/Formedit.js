@@ -4,6 +4,7 @@ import Cross from '../../assets/cross.png';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import styles from './Formadd.module.scss';
+import db from '../../Firebase';
 
 class FromEdit extends React.Component {
  constructor(props) {
@@ -18,7 +19,8 @@ class FromEdit extends React.Component {
    contactPhone: '',
    contactPosition: '',
    description: '',
-   userId: ''
+   userId: '',
+   contacId: ''
   };
  }
  componentDidMount() {
@@ -31,8 +33,9 @@ class FromEdit extends React.Component {
    contactEmail: this.props.editContact.contactEmail,
    contactPhone: this.props.editContact.contactPhone,
    contactPosition: this.props.editContact.contactPosition,
+   contacId: this.props.editContact.contacId,
    description: this.props.editContact.description,
-   userId: this.props.editContact.userId
+   userId: this.props.userId
   });
  }
  handleEditContact = e => {
@@ -51,6 +54,7 @@ class FromEdit extends React.Component {
    contactPhone,
    contactPosition,
    description,
+   contacId,
    userId
   } = this.state;
   const errors = [];
@@ -78,19 +82,14 @@ class FromEdit extends React.Component {
     contactPhone,
     contactPosition,
     description,
+    contacId,
     userId
    };
-
-   fetch(`http://localhost:4000/contacts/${this.props.editContact.id}`, {
-    method: 'PUT',
-    headers: {
-     'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(editContact)
-   })
-    .then(response => response.text())
-    .then(() => this.props.loadData())
-    .catch(error => console.error('Error:', error));
+   db
+    .collection('contacts')
+    .doc(contacId)
+    .update(editContact)
+    .then(() => this.props.loadData());
    alert('Your change has been saved');
   } else {
    alert('Please fill in all fields correctly.');
@@ -165,7 +164,7 @@ class FromEdit extends React.Component {
        <Input
         type={'text'}
         placeholder={'e-mail.'}
-        name="contactPhone"
+        name="contactEmail"
         value={this.state.contactEmail}
         onChange={e => {
          this.handleEditContact(e);
