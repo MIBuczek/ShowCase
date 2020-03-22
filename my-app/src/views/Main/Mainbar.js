@@ -9,6 +9,7 @@ class Mainbar extends React.Component {
   super(props);
   this.state = {
    userContacts: [],
+   allUserContacts: [],
    visible: 4,
    searchValue: '',
    searchType: ''
@@ -20,7 +21,10 @@ class Mainbar extends React.Component {
     contact.userId === this.props.userData[this.props.userId].id && contact
    );
   });
-  this.setState({ userContacts: [...userContacts] });
+  this.setState({
+   userContacts: [...userContacts],
+   allUserContacts: [...userContacts]
+  });
  }
 
  handleLoadMore = e => {
@@ -35,14 +39,22 @@ class Mainbar extends React.Component {
 
  showSearchResults = e => {
   e.preventDefault();
-  let filterContacts = this.state.contactData.filter(contact => {
+  let filterContacts = this.state.userContacts.filter(contact => {
    if (this.state.searchType === 'companyCountry') {
     return contact.companyCountry.indexOf(this.state.searchValue) !== -1;
-   } else {
+   } else if (this.state.searchType === 'companyName') {
     return contact.companyName.indexOf(this.state.searchValue) !== -1;
+   } else {
+    return null;
    }
   });
-  this.setState({ userContacts: filterContacts });
+  if (this.state.searchType === '') {
+   return this.setState({
+    userContacts: this.state.allUserContacts,
+    searchValue: ''
+   });
+  }
+  this.setState({ userContacts: filterContacts, searchValue: '' });
  };
 
  getSearchType = e => {

@@ -11,6 +11,7 @@ const Searchbar = ({ searchValue, eventHandle, eventShow, searchType }) => {
      name="filter"
      onChange={searchType}
     >
+     <option value="">all.</option>
      <option value="companyCountry">country.</option>
      <option value="companyName">company name.</option>
     </select>
