@@ -3,6 +3,7 @@ import styles from '../Main/Mainbar.module.scss';
 import Searchbar from '../../components/Searchbar';
 import Cards from '../../components/Cards';
 import Button from '../../components/Button';
+import db from '../../Firebase';
 
 class Mainbar extends React.Component {
  constructor({ props }) {
@@ -17,9 +18,7 @@ class Mainbar extends React.Component {
  }
  componentDidMount() {
   const userContacts = this.props.contactData.filter(contact => {
-   return (
-    contact.userId === this.props.userData[this.props.userId].id && contact
-   );
+   return contact.userId === this.props.userId && contact;
   });
   this.setState({
    userContacts: [...userContacts],
@@ -64,10 +63,10 @@ class Mainbar extends React.Component {
 
  deleteContacts = (e, id) => {
   e.preventDefault();
-  fetch(`http://localhost:4000/contacts/${id}`, {
-   method: 'DELETE'
-  })
-   .then(response => response.json())
+  db
+   .collection('contacts')
+   .doc(id)
+   .delete()
    .then(() => this.props.loadData());
  };
  render() {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Input from '../../components/Input';
 import Cross from '../../assets/cross.png';
 import styles from './Profile.module.scss';
+import db from '../../Firebase';
 
 class Profile extends React.Component {
  constructor(props) {
@@ -13,17 +14,25 @@ class Profile extends React.Component {
    dublicatePassword: '',
    company: '',
    position: '',
-   proffesion: ''
+   proffesion: '',
+   userId: ''
   };
  }
  componentDidMount() {
+  const currnetUser = this.props.usersData.find(user => {
+   if (user.userId === this.props.userId) {
+    return user;
+   }
+   return null;
+  });
   this.setState({
-   loggIn: this.props.users[this.props.userId].loggIn,
-   password: this.props.users[this.props.userId].password,
-   dublicatePassword: this.props.users[this.props.userId].password,
-   company: this.props.users[this.props.userId].company,
-   position: this.props.users[this.props.userId].position,
-   proffesion: this.props.users[this.props.userId].proffesion
+   loggIn: currnetUser.loggIn,
+   password: currnetUser.password,
+   dublicatePassword: currnetUser.password,
+   company: currnetUser.company,
+   position: currnetUser.position,
+   proffesion: currnetUser.proffesion,
+   userId: this.props.userId
   });
  }
  handleEditUser = e => {
@@ -38,7 +47,8 @@ class Profile extends React.Component {
    dublicatePassword,
    company,
    position,
-   proffesion
+   proffesion,
+   userId
   } = this.state;
   const errors = [];
   if (
@@ -60,18 +70,14 @@ class Profile extends React.Component {
     password,
     company,
     proffesion,
-    position
+    position,
+    userId
    };
-   fetch(`http://localhost:4000/users/${this.props.userId + 1}`, {
-    method: 'PUT',
-    headers: {
-     'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(upDatePerson)
-   })
-    .then(response => response.text())
-    .then(() => this.props.loadData())
-    .catch(error => console.error('Error:', error));
+   db
+    .collection('users')
+    .doc(this.props.userId)
+    .update(upDatePerson)
+    .then(() => this.props.loadData());
    alert('Your change has been saved');
   } else {
    alert('Please fill in all fields correctly.');

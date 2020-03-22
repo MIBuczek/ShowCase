@@ -108,6 +108,19 @@
       "description": "Printting company, open to copperation.",
       "userId": 2,
       "id": 7
+    },
+    {
+      "companyName": "test",
+      "companyCountry": "Polska",
+      "companyWWW": "www.test.pl",
+      "companyProffesion": "testing",
+      "contactName": "tester",
+      "contactEmail": "info@test.pl",
+      "contactPhone": "123 456 789",
+      "contactPosition": "",
+      "description": "test test test",
+      "userId": 1,
+      "id": 8
     }
   ]
 }

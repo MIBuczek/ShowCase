@@ -4,6 +4,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Checkbox from '../../components/Checkbox';
 import Cross from '../../assets/cross.png';
+import db from '../../Firebase';
 
 class SingIn extends React.Component {
  constructor(props) {
@@ -55,24 +56,18 @@ class SingIn extends React.Component {
    alert('Please accept requlations');
   }
   if (this.state.checked === true && errors.length === 0) {
-   const newPerson = {
-    loggIn,
-    password,
-    company,
-    proffesion,
-    position
-   };
-   fetch('http://localhost:4000/users', {
-    method: 'POST',
-    headers: {
-     'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(newPerson)
-   })
-    .then(response => response.text())
-    .then(() => this.props.loadData())
-    .catch(error => console.error('Error:', error));
+   db
+    .collection('users')
+    .add({
+     loggIn: loggIn,
+     password: password,
+     company: company,
+     proffesion: proffesion,
+     position: position
+    })
+    .then(() => this.props.loadData());
    alert('Congratulation, you sing in to ShowCase!');
+   this.props.singOut(e);
   } else {
    alert('Please fill in all fields correctly.');
   }
