@@ -4,79 +4,24 @@ import Cross from '../../assets/cross.png';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import styles from './Formadd.module.scss';
-import db from '../../Firebase';
+import { DataContext } from '../../context/DataContext';
 
 class FromAdd extends React.Component {
- constructor(props) {
-  super(props);
-  this.state = {
-   userId: this.props.userId,
-   companyName: '',
-   companyCountry: '',
-   companyWWW: '',
-   companyProffesion: '',
-   contactName: '',
-   contactEmail: '',
-   contactPhone: '',
-   contactPosition: '',
-   description: ''
-  };
- }
- handleAddContact = e => {
-  e.preventDefault();
-  this.setState({ [e.target.name]: e.target.value });
- };
- handleUploadContact = e => {
-  e.preventDefault();
-  const {
-   companyName,
-   companyCountry,
-   companyWWW,
-   companyProffesion,
-   contactName,
-   contactEmail,
-   contactPhone,
-   contactPosition,
-   description,
-   userId
-  } = this.state;
-  const errors = [];
-  if (
-   companyName < 2 &&
-   companyCountry < 2 &&
-   companyWWW < 2 &&
-   companyProffesion < 2 &&
-   contactName < 2 &&
-   contactEmail < 2 &&
-   contactPhone < 2 &&
-   contactPosition < 2
-  ) {
-   errors.push('File must hes at liest 2 letter word.');
-   alert('File must hes at liest 2 letter word.');
-  }
-  if (errors.length === 0) {
-   const newContact = {
-    companyName,
-    companyCountry,
-    companyWWW,
-    companyProffesion,
-    contactName,
-    contactEmail,
-    contactPhone,
-    contactPosition,
-    description,
-    userId
-   };
-   db
-    .collection('contacts')
-    .add(newContact)
-    .then(() => this.props.loadData());
-   alert('your contacts has been saved.');
-  } else {
-   alert('Please fill in all fields correctly.');
-  }
- };
+ static contextType = DataContext;
  render() {
+  const {
+   companyNameNew,
+   companyCountryNew,
+   companyWWWNew,
+   companyProffesionNew,
+   contactNameNew,
+   contactEmailNew,
+   contactPhoneNew,
+   contactPositionNew,
+   descriptionNew,
+   handleChangeInput,
+   handleUploadContact
+  } = this.context;
   return (
    <section className={styles.wrapper}>
     <div className={styles.addContact}>
@@ -94,88 +39,75 @@ class FromAdd extends React.Component {
        <Input
         type={'text'}
         placeholder={'company name.'}
-        value={this.state.companyName}
-        name="companyName"
-        onChange={e => {
-         this.handleAddContact(e);
-        }}
+        value={companyNameNew}
+        name="companyNameNew"
+        onChange={e => handleChangeInput(e)}
        />
        <Input
         type={'text'}
         placeholder={'www.'}
         size={'short'}
-        name="companyWWW"
-        value={this.state.companyWWW}
-        onChange={e => {
-         this.handleAddContact(e);
-        }}
+        name="companyWWWNew"
+        value={companyWWWNew}
+        onChange={e => handleChangeInput(e)}
        />
        <Input
         type={'text'}
         placeholder={'country.'}
         size={'short'}
-        name="companyCountry"
-        value={this.state.companyCountry}
-        onChange={e => {
-         this.handleAddContact(e);
-        }}
+        name="companyCountryNew"
+        value={companyCountryNew}
+        onChange={e => handleChangeInput(e)}
        />
        <Input
         type={'text'}
         placeholder={'proffesion.'}
-        name="companyProffesion"
-        value={this.state.companyProffesion}
-        onChange={e => {
-         this.handleAddContact(e);
-        }}
+        name="companyProffesionNew"
+        value={companyProffesionNew}
+        onChange={e => handleChangeInput(e)}
        />
       </div>
       <div>
        <Input
         type={'text'}
         placeholder={'contact person.'}
-        name="contactName"
-        value={this.state.contactName}
-        onChange={e => {
-         this.handleAddContact(e);
-        }}
+        name="contactNameNew"
+        value={contactNameNew}
+        onChange={e => handleChangeInput(e)}
+       />
+       <Input
+        type={'text'}
+        placeholder={'position.'}
+        value={contactPositionNew}
+        name="contactPositionNew"
+        onChange={e => handleChangeInput(e)}
        />
        <Input
         type={'text'}
         placeholder={'phone.'}
         size={'short'}
-        value={this.state.contactPhone}
-        name="contactPhone"
-        onChange={e => {
-         this.handleAddContact(e);
-        }}
+        value={contactPhoneNew}
+        name="contactPhoneNew"
+        onChange={e => handleChangeInput(e)}
        />
        <Input
         type={'text'}
         placeholder={'e-mail.'}
         size={'short'}
-        name="contactEmail"
-        value={this.state.contactEmail}
-        onChange={e => {
-         this.handleAddContact(e);
-        }}
+        name="contactEmailNew"
+        value={contactEmailNew}
+        onChange={e => handleChangeInput(e)}
        />
        <Textarea
         type={'text'}
         placeholder={'description.'}
-        value={this.state.description}
-        name="description"
-        onChange={e => {
-         this.handleAddContact(e);
-        }}
+        value={descriptionNew}
+        name="descriptionNew"
+        onChange={e => handleChangeInput(e)}
        />
       </div>
      </form>
-     <button
-      className={styles.buttonAdd}
-      type={'button'}
-      onClick={e => this.handleUploadContact(e)}
-     >
+     <button className={styles.buttonAdd} type={'button'} onClick={e => handleUploadContact(e)}>
       <Link to="/">add.</Link>
      </button>
     </div>

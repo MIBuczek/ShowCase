@@ -3,38 +3,25 @@ import styles from './LogInForm.module.scss';
 import SingIn from './SingIn';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import { DataContext } from '../../context/DataContext';
 
 class LoggIn extends React.Component {
- constructor(props) {
-  super(props);
-  this.state = {
-   singIn: false,
-   newUser: undefined
-  };
- }
+ static contextType = DataContext;
 
- handleSingIn = e => {
-  e.preventDefault();
-  this.setState({ singIn: true });
- };
- handleSingOut = e => {
-  e.preventDefault();
-  this.setState({ singIn: false });
- };
- addNewUser = (e, newPerson) => {
-  e.preventDefault();
-  this.setState({ newUser: newPerson });
- };
  render() {
+  const {
+   userName,
+   userPassword,
+   singIn,
+   handleSingIn,
+   handleChangeInput,
+   handleLoggin
+  } = this.context;
+
   const singInText = (
    <h3 className={styles.singInText}>
     if you do not have account, please
-    <button
-     className={styles.singInBtn}
-     onClick={e => {
-      this.handleSingIn(e);
-     }}
-    >
+    <button className={styles.singInBtn} onClick={e => handleSingIn(e)}>
      sing in.
     </button>
    </h3>
@@ -48,33 +35,19 @@ class LoggIn extends React.Component {
        type={'text'}
        placeholder={'user name.'}
        name="userName"
-       value={this.props.valueUser}
-       onChange={this.props.onChangeFn}
+       value={userName}
+       onChange={handleChangeInput}
       />
       <Input
        type={'password'}
        placeholder={'password.'}
-       name="password"
-       value={this.props.valuePassword}
-       onChange={this.props.onChangeFn}
+       name="userPassword"
+       value={userPassword}
+       onChange={handleChangeInput}
       />
      </form>
-     <Button
-      type={'button'}
-      value={'next.'}
-      eventHandle={this.props.onClickFn}
-     />
-     {this.state.singIn ? (
-      <SingIn
-       loadData={this.props.loadData}
-       singOut={e => {
-        this.handleSingOut(e);
-       }}
-       eventHandle={this.handleSingOut}
-      />
-     ) : (
-      singInText
-     )}
+     <Button type={'button'} value={'next.'} eventHandle={handleLoggin} />
+     {singIn ? <SingIn /> : singInText}
     </div>
    </section>
   );

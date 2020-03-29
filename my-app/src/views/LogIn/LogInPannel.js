@@ -4,23 +4,11 @@ import Header from './Header';
 import Motto from './Motto';
 import Footer from './Footer';
 
-const LoginPannel = ({
- onChangeFn,
- onClickFn,
- valueUser,
- valuePassword,
- loadData
-}) => (
+const LoginPannel = () => (
  <>
   <Header />
   <Motto />
-  <LoginForm
-   onChangeFn={onChangeFn}
-   onClickFn={onClickFn}
-   valueUser={valueUser}
-   valuePassword={valuePassword}
-   loadData={loadData}
-  />
+  <LoginForm />
   <Footer />
  </>
 );

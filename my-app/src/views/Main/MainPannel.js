@@ -9,27 +9,15 @@ import Profile from './Profile';
 import Formedit from './Formedit';
 import styles from './MainPannel.module.scss';
 
-const MainContent = ({
- userId,
- users,
- contacts,
- handleEditContact,
- loadData
-}) => (
+const MainContent = () => (
  <main className={styles.wrapper}>
-  <Welcombar userData={users} userId={userId} contactData={contacts} />
-  <Mainbar
-   userData={users}
-   userId={userId}
-   contactData={contacts}
-   handleEditContact={handleEditContact}
-   loadData={loadData}
-  />
+  <Welcombar />
+  <Mainbar />
  </main>
 );
-const Addcontetn = ({ userId, loadData }) => (
+const Addcontetn = () => (
  <main className={styles.wrapper}>
-  <FormAddContact userId={userId} loadData={loadData} />
+  <FormAddContact />
  </main>
 );
 
@@ -48,47 +36,12 @@ class MainPannel extends React.Component {
   return (
    <>
     <BrowserRouter>
-     <Navbar logOut={this.props.logOut} />
+     <Navbar />
      <Switch>
-      <Route
-       exact
-       path="/"
-       component={() => (
-        <MainContent
-         userId={this.props.userId}
-         users={this.props.users}
-         contacts={this.props.contacts}
-         handleEditContact={this.handleContactToEdit}
-         loadData={this.props.loadData}
-        />
-       )}
-      />
-      <Route
-       path="/addcontact"
-       component={() => (
-        <Addcontetn userId={this.props.userId} loadData={this.props.loadData} />
-       )}
-      />
-      <Route
-       path="/editcontact"
-       component={() => (
-        <Formedit
-         userId={this.props.userId}
-         editContact={this.state.contactToEdit}
-         loadData={this.props.loadData}
-        />
-       )}
-      />
-      <Route
-       path="/profile"
-       component={() => (
-        <Profile
-         userId={this.props.userId}
-         usersData={this.props.users}
-         loadData={this.props.loadData}
-        />
-       )}
-      />
+      <Route exact path="/" component={() => <MainContent />} />
+      <Route path="/addcontact" component={() => <Addcontetn />} />
+      <Route path="/editcontact" component={() => <Formedit />} />
+      <Route path="/profile" component={() => <Profile />} />
      </Switch>
      <Footer />
     </BrowserRouter>
