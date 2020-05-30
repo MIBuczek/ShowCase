@@ -1,24 +1,54 @@
 import React from 'react';
 import styles from './App.module.scss';
-import LogIn from './views/LogIn/LogIn';
-import Header from './views/LogIn/Header';
-import Motto from './views/LogIn/Motto';
-import Footer from './views/LogIn/Footer';
-import MainPannel from './views/Main/Main';
-import data from './data/data.json';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginPannel from './views/LogIn/LogInPannel';
+import MainPannel from './views/Main/MainPannel';
+import db from './Firebase';
 
 class App extends React.Component {
  state = {
-  users: [...data.users],
+  users: [],
+  contacts: [],
   userName: '',
   password: '',
-  user: undefined
+  userId: undefined
  };
+
+ loadData = () => {
+  db
+   .collection('users')
+   .get()
+   .then(snapshot => {
+    const usersArr = [];
+    snapshot.docs.map(doc => {
+     let user = doc.data();
+     user.userId = doc.id;
+     return usersArr.push(user);
+    });
+    this.setState({ users: usersArr });
+   });
+  db
+   .collection('contacts')
+   .get()
+   .then(snapshot => {
+    const contactsArr = [];
+    snapshot.docs.map(doc => {
+     let contact = doc.data();
+     contact.contacId = doc.id;
+     return contactsArr.push(contact);
+    });
+    this.setState({ contacts: contactsArr });
+   });
+ };
+
+ componentDidMount() {
+  this.loadData();
+ }
+
  handleChangeLogIn = e => {
   e.preventDefault();
   this.setState({ [e.target.name]: e.target.value });
  };
+
  handleLoggin = e => {
   e.preventDefault();
   const matchingUser = this.state.users.find(user => {
@@ -26,37 +56,44 @@ class App extends React.Component {
     user.loggIn === this.state.userName && user.password === this.state.password
    );
   });
-  this.setState({ user: matchingUser });
+  if (matchingUser) {
+   this.setState({ userName: '', password: '', userId: matchingUser.userId });
+  } else {
+   this.setState({ userId: undefined });
+  }
  };
+
  handleLogOut = e => {
   e.preventDefault();
-  this.setState({ logIn: false });
+  this.setState({ userId: undefined });
  };
+
  render() {
-  if (this.state.user === undefined) {
+  if (this.state.userId === undefined) {
    return (
     <div className={styles.wrapper}>
-     <Header />
-     <Motto />
-     <LogIn
+     <LoginPannel
       onChangeFn={e => this.handleChangeLogIn(e)}
       onClickFn={e => {
        this.handleLoggin(e);
       }}
       valueUser={this.state.userName}
       valuePassword={this.state.password}
+      loadData={this.loadData}
      />
-     <Footer />
     </div>
    );
   } else {
    return (
     <div className={styles.wrapper}>
      <MainPannel
-      user={this.state.user}
+      userId={this.state.userId}
+      users={this.state.users}
+      contacts={this.state.contacts}
       logOut={e => {
        this.handleLogOut(e);
       }}
+      loadData={this.loadData}
      />
     </div>
    );
@@ -65,3 +102,10 @@ class App extends React.Component {
 }
 
 export default App;
+
+//firebase
+//refactoring
+//key sensitife
+//sprawdzanie czy dany uzytkowni jest juz w bazie
+//sprawdzanie czy dana wizytówka jest juz w bazie
+//deploing-->netlify

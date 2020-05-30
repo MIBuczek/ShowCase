@@ -1,22 +1,29 @@
 import React from 'react';
 import styles from '../components/Searchbar.module.scss';
 
-const Searchbar = () => {
+const Searchbar = ({ searchValue, eventHandle, eventShow, searchType }) => {
  return (
   <section className={styles.serchbar}>
    <form className={styles.serchbarForm}>
-    <select className={styles.serchbarSelect} id="filter" name="filter">
-     <option value="country">country.</option>
+    <select
+     className={styles.serchbarSelect}
+     id="filter"
+     name="filter"
+     onChange={searchType}
+    >
+     <option value="">all.</option>
+     <option value="companyCountry">country.</option>
      <option value="companyName">company name.</option>
-     <option value="profesion">profesion.</option>
     </select>
     <input
      className={styles.serchbarInput}
      type="text"
      name="search"
      placeholder="search"
+     value={searchValue}
+     onChange={eventHandle}
     ></input>
-    <button className={styles.serchbarBtn} type="button">
+    <button className={styles.serchbarBtn} onClick={eventShow} type="button">
      search.
     </button>
    </form>

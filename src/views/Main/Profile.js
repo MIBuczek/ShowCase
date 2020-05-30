@@ -1,21 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../components/Input';
-import Button from '../../components/Button';
 import Cross from '../../assets/cross.png';
 import styles from './Profile.module.scss';
+import db from '../../Firebase';
 
 class Profile extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   userName: this.props.user.loggIn,
-   password: this.props.user.password,
-   dublicatePassword: this.props.user.password,
-   company: this.props.user.company,
-   profesion: this.props.user.position,
-   email: this.props.user.email
+   loggIn: '',
+   password: '',
+   dublicatePassword: '',
+   company: '',
+   position: '',
+   proffesion: '',
+   userId: ''
   };
+ }
+ componentDidMount() {
+  const currnetUser = this.props.usersData.find(user => {
+   if (user.userId === this.props.userId) {
+    return user;
+   }
+   return null;
+  });
+  this.setState({
+   loggIn: currnetUser.loggIn,
+   password: currnetUser.password,
+   dublicatePassword: currnetUser.password,
+   company: currnetUser.company,
+   position: currnetUser.position,
+   proffesion: currnetUser.proffesion,
+   userId: this.props.userId
+  });
  }
  handleEditUser = e => {
   e.preventDefault();
@@ -23,7 +41,47 @@ class Profile extends React.Component {
  };
  handleSaveChange = e => {
   e.preventDefault();
-  alert('Your change has been saved');
+  const {
+   loggIn,
+   password,
+   dublicatePassword,
+   company,
+   position,
+   proffesion,
+   userId
+  } = this.state;
+  const errors = [];
+  if (
+   loggIn.length < 2 &&
+   company.length < 2 &&
+   proffesion.length < 2 &&
+   position.length < 2
+  ) {
+   errors.push('File must hes at liest 2 letter word.');
+   alert('File must hes at liest 2 letter word.');
+  }
+  if (password !== dublicatePassword) {
+   errors.push('password and double password must be identify,');
+   alert('password and double password must be identify,');
+  }
+  if (errors.length === 0) {
+   const upDatePerson = {
+    loggIn,
+    password,
+    company,
+    proffesion,
+    position,
+    userId
+   };
+   db
+    .collection('users')
+    .doc(this.props.userId)
+    .update(upDatePerson)
+    .then(() => this.props.loadData());
+   alert('Your change has been saved');
+  } else {
+   alert('Please fill in all fields correctly.');
+  }
  };
  render() {
   return (
@@ -40,8 +98,8 @@ class Profile extends React.Component {
       <Input
        type={'text'}
        placeholder={'user name.'}
-       name={'userName'}
-       value={this.state.userName}
+       name={'loggIn'}
+       value={this.state.loggIn}
        onChange={e => {
         this.handleEditUser(e);
        }}
@@ -75,30 +133,32 @@ class Profile extends React.Component {
       />
       <Input
        type={'text'}
-       placeholder={'profesion.'}
-       name={'profesion'}
-       value={this.state.profesion}
+       placeholder={'proffesion.'}
+       name={'proffesion'}
+       value={this.state.proffesion}
        onChange={e => {
         this.handleEditUser(e);
        }}
       />
       <Input
        type={'text'}
-       placeholder={'email.'}
-       name={'email'}
-       value={this.state.email}
+       placeholder={'position.'}
+       name={'position'}
+       value={this.state.position}
        onChange={e => {
         this.handleEditUser(e);
        }}
       />
      </form>
-     <Button
+     <button
+      className={styles.buttonSave}
       type={'button'}
-      value={'save change.'}
-      eventHandle={e => {
+      onClick={e => {
        this.handleSaveChange(e);
       }}
-     />
+     >
+      <Link to="/">save change.</Link>
+     </button>
     </div>
    </section>
   );

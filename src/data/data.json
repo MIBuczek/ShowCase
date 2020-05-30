@@ -1,54 +1,113 @@
 {
-	"users": [
-		{
-			"loggIn": "MIBuczek",
-			"password": "admin",
-			"email": "mibcoding@gmail.com",
-			"company": "Adsystem",
-			"position": "Account Manager",
-			"proffesion": "Printing house",
-			"contacts": [
-				{
-					"companyName": "deepblue",
-					"companyCountry": "United Kingdom",
-					"companyWWW": "www.deepblue.co.uk",
-					"contactName": "Phil Worsfold",
-					"contactEmail": "philw@deepblue.co.uk",
-					"contactPhone": "+442286805847",
-					"contactProfesion": "Director",
-					"description": "Contact after fairs in Munich. Interest of all moder product category"
-				},
-				{
-					"companyName": "l-shopteam",
-					"companyCountry": "Czech Republic",
-					"companyWWW": "www.l-shopteam.cz",
-					"contactName": "Richard Hamp",
-					"contactEmail": "r.hampl@l-shop-team.cz",
-					"contactPhone": "+42602256841",
-					"contactProfesion": "Business developer manager",
-					"description": "Possible reseller of our product"
-				},
-				{
-					"companyName": "PAKETO",
-					"companyCountry": "Czech",
-					"companyWWW": "www.paketo.cz",
-					"contactName": "Marcela Klabnikova",
-					"contactEmail": "marcela@gnp.cz",
-					"contactPhone": "+42602554535",
-					"contactProfesion": "Sales manager",
-					"description": "Contact after fairs in Munich. Interest of all moder product category"
-				},
-				{
-					"companyName": "Sublimprofil",
-					"companyCountry": "Austria",
-					"companyWWW": "www.sublimprofil.au",
-					"contactName": "Kurt Match",
-					"contactEmail": "kurt@sublimprofil.au",
-					"contactPhone": "+40731490282",
-					"contactProfesion": "marketing manager",
-					"description": "Fari booth size 10x12metter"
-				}
-			]
-		}
-	]
+  "users": [
+    {
+      "loggIn": "MIBuczek",
+      "password": "admin",
+      "company": "Credit Suiss",
+      "proffesion": "Printing house",
+      "position": "Account Manager",
+      "id": 1
+    },
+    {
+      "loggIn": "SaraB",
+      "password": "sara",
+      "company": "SISK",
+      "proffesion": "Marketing house",
+      "position": "Office Manager",
+      "id": 2
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "companyName": "deepblue",
+      "companyCountry": "United Kingdom",
+      "companyWWW": "www.deepblue.co.uk",
+      "companyProffesion": "Gift shop",
+      "contactName": "Phil Worsfold",
+      "contactEmail": "philw@deepblue.co.uk",
+      "contactPhone": "+442286805847",
+      "contactPosition": "Director",
+      "description": "Contact after fairs in Munich. Interest of all moder product category"
+    },
+    {
+      "companyName": "l-shopteam",
+      "companyCountry": "Czechy",
+      "companyWWW": "www.l-shopteam.cz",
+      "companyProffesion": "Sport shop",
+      "contactName": "Richard Hamp",
+      "contactEmail": "r.hampl@l-shop-team.cz",
+      "contactPhone": "+42602256841",
+      "contactPosition": "Business developer manager",
+      "description": "Possible reseller of our product",
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "companyName": "PAKETO",
+      "companyCountry": "Czechy",
+      "companyWWW": "www.paketo.cz",
+      "companyProffesion": "AV Agency",
+      "contactName": "Marcela Klabnikova",
+      "contactEmail": "marcela@gnp.cz",
+      "contactPhone": "+42602554535",
+      "contactPosition": "Sales manager",
+      "description": "Contact after fairs in Munich. Interest of all moder product category",
+      "id": 1,
+      "userId": 1
+    },
+    {
+      "companyName": "Sublimprofil",
+      "companyCountry": "Austria",
+      "companyWWW": "www.sublimprofil.au",
+      "companyProffesion": "Printing house",
+      "contactName": "Kurt Match",
+      "contactEmail": "kurt@sublimprofil.au",
+      "contactPhone": "+40731490282",
+      "contactPosition": "marketing manager",
+      "description": "Fari booth size 10x12metter",
+      "id": 4,
+      "userId": 1
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "companyName": "SISK Siechnice",
+      "companyCountry": "Polska",
+      "companyWWW": "www.sisk-siechnice.pl",
+      "companyProffesion": "Spółka komunalna",
+      "contactName": "Sara Gierszewska",
+      "contactEmail": "saragierszewska@sisk.pl",
+      "contactPhone": "+48889000230",
+      "contactPosition": "Asystent manager",
+      "description": "Chcą przeprowadzić akcej promocyjną, chroń zieleń"
+    },
+    {
+      "id": 6,
+      "userId": 2,
+      "companyName": "Provident",
+      "companyCountry": "Polska",
+      "companyWWW": "www.provident.pl",
+      "companyProffesion": "Porzyczki",
+      "contactName": "Andrzej Gierszewski",
+      "contactEmail": "gierszewski@provident.pl",
+      "contactPhone": "+48666061715",
+      "contactPosition": "Doradca klienta exprert",
+      "description": "Potencjalny koncowy klient"
+    },
+    {
+      "companyName": "Printers",
+      "companyCountry": "Polska",
+      "companyWWW": "www.printe.pl",
+      "companyProffesion": "printing",
+      "contactName": "Printerosław",
+      "contactEmail": "office@pirnt.pl",
+      "contactPhone": "123456",
+      "contactPosition": "",
+      "description": "Printting company, open to copperation.",
+      "userId": 2,
+      "id": 7
+    }
+  ]
 }

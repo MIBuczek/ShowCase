@@ -7,7 +7,7 @@
  font-style: normal;
  .addContact {
   width: 55%;
-  height: 757px;
+  min-height: 757px;
   background: #c4c4c4;
   border: 2px solid #ffffff;
   box-sizing: border-box;
@@ -23,6 +23,7 @@
    letter-spacing: -0.015em;
    color: #ffffff;
    margin-bottom: 20px;
+
    h1 {
     font-weight: 600;
     font-size: 24px;
@@ -32,12 +33,48 @@
     font-weight: 600;
     font-size: 20px;
    }
+   a {
+    margin-left: 98%;
+    .crossBtn {
+     outline: none;
+     width: 40px;
+     height: 40px;
+     background: none;
+     border: none;
+     margin-right: 15px;
+     margin-top: 10px;
+     cursor: pointer;
+    }
+   }
   }
   &Form {
    @extend .addContactText;
    &Part {
     margin-bottom: 30px;
    }
+  }
+ }
+ .buttonAdd {
+  width: 241px;
+  height: 49px;
+  border: 3px solid #ffffff;
+  background: #c4c4c4;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: -0.015em;
+  cursor: pointer;
+  margin: 0.8rem auto;
+  outline: none;
+  a {
+   text-decoration: none;
+   margin: 0;
+   color: white;
+  }
+  &:active {
+   transition: width 0.2s;
+   background: #d5d5d5;
   }
  }
 }
