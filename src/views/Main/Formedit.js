@@ -5,8 +5,9 @@ import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import styles from './Formadd.module.scss';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { editContact } from '../../store/actions/contactActions';
 
 class FromEdit extends React.Component {
  constructor(props) {
@@ -26,31 +27,21 @@ class FromEdit extends React.Component {
   };
  }
   componentDidMount() {
-  this.setState({
-    companyName: this.props.editContact.companyName,
-    companyCountry: this.props.editContact.companyCountry,
-    companyWWW: this.props.editContact.companyWWW,
-    companyProffesion: this.props.editContact.companyProffesion,
-    contactName: this.props.editContact.contactName,
-    contactEmail: this.props.editContact.contactEmail,
-    contactPhone: this.props.editContact.contactPhone,
-    contactPosition: this.props.editContact.contactPosition,
-    contacId: this.props.editContact.contacId,
-    description: this.props.editContact.description,
-    userId: this.props.userId
-  });
+    setTimeout(()=>{
+      this.setState(this.props.contact)
+    },500)
  }
+
  handleEditContact = e => {
   this.setState({ [e.target.name]: e.target.value });
  };
- handleSaveChange = e => {
-  console.log('chagnes was save');
+
+ handleSaveChange = () => {
+   this.props.editContact(this.state);
+   this.props.history.push('/');
  };
+
  render() {
-   
-  const {auth}= this.props;
-  if(!auth.uid) return <Redirect to='/signin'/>
- 
   return (
    <section className={styles.wrapper}>
     <div className={styles.addContact}>
@@ -98,10 +89,24 @@ class FromEdit extends React.Component {
  }
 }
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state , ownProps) => {
+  const id = ownProps.match.params.id;
+  const contacts = state.firestore.data.contacts;
+  const contact = contacts ? contacts[id] : null ;
   return{
-    auth: state.firebase.auth
+      contact : contact
   }
 }
 
-export default connect(mapStateToProps)(FromEdit);
+const mapDispatchToProps = dispatch =>{
+  return{
+    editContact : contact => dispatch(editContact(contact))
+  }
+}
+
+export default compose(
+  connect(mapStateToProps,mapDispatchToProps),
+  firestoreConnect([
+      {collection : 'contacts'}
+  ])
+)(FromEdit);

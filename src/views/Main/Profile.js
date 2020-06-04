@@ -4,7 +4,9 @@ import Input from '../../components/Input';
 import Cross from '../../assets/cross.png';
 import styles from './Profile.module.scss';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { editUserProfile } from '../../store/actions/authAction';
 
 
 class Profile extends React.Component {
@@ -21,35 +23,23 @@ class Profile extends React.Component {
   };
  }
  componentDidMount() {
-  const currnetUser = this.props.usersData.find(user => {
-   if (user.userId === this.props.userId) {
-    return user;
-   }
-   return null;
-  });
-  this.setState({
-   loggIn: currnetUser.loggIn,
-   password: currnetUser.password,
-   dublicatePassword: currnetUser.password,
-   company: currnetUser.company,
-   position: currnetUser.position,
-   proffesion: currnetUser.proffesion,
-   userId: this.props.userId
-  });
+   setTimeout(()=>{
+     this.setState(this.props.user)
+   },500)
  }
- handleEditUser = e => {
-  e.preventDefault();
-  this.setState({ [e.target.name]: e.target.value });
+
+ handleChange = (e)=> {
+  this.setState({
+     [e.target.name]:e.target.value
+  })
  };
- handleSaveChange = e => {
-  console.log('change was save')
+
+ handleSaveChange = () => {
+   this.props.editUserProfile(this.props.id,this.state)
+   this.props.history.push('/');
  };
 
  render() {
-   
-  const {auth}= this.props;
-  if(!auth.uid) return <Redirect to='/signin'/>
- 
   return (
    <section className={styles.wrapper}>
     <div className={styles.editPannel}>
@@ -61,21 +51,17 @@ class Profile extends React.Component {
      <h2>edit profile.</h2>
      <h5>if you would like to update your profile.</h5>
      <form>
-      <Input type={'text'} placeholder={'user name.'} name={'loggIn'}
-       value={this.state.loggIn} onChange={e =>this.handleEditUser(e)}/>
-      <Input type={'text'} placeholder={'password.'} name={'password'}
-       value={this.state.password} onChange={e =>this.handleEditUser(e)}/>
-      <Input type={'text'}placeholder={'dublicate password.'} name={'dublicatePassword'}
-       value={this.state.dublicatePassword} onChange={e => this.handleEditUser(e)}/>
-      <Input type={'text'} placeholder={'company.'} name={'company'} value={this.state.company}
-       onChange={e =>this.handleEditUser(e)}/>
-      <Input type={'text'} placeholder={'proffesion.'} name={'proffesion'} value={this.state.proffesion}
-       onChange={e => this.handleEditUser(e)}/>
-      <Input type={'text'} placeholder={'position.'} name={'position'}value={this.state.position}
-       onChange={e =>this.handleEditUser(e)}/>
+        <Input type={'text'} placeholder={'name.'}  name={'name'} value={this.state.name}
+          onChange={e => this.handleChange(e)} /> 
+        <Input type={'text'} placeholder={'company.'} name={'company'} value={this.state.company}
+          onChange={e => this.handleChange(e)}/>
+        <Input type={'text'} placeholder={'proffesion.'} name={'proffesion'} value={this.state.proffesion}
+          onChange={e => this.handleChange(e)}/>
+        <Input type={'text'} placeholder={'position.'} name={'position'} value={this.state.position} 
+        onChange={e =>  this.handleChange(e)}/>
      </form>
      <button className={styles.buttonSave}type={'button'}
-      onClick={e =>this.handleSaveChange(e)}>
+      onClick={ ()=>this.handleSaveChange()}>
       <Link to="/">save change.</Link>
      </button>
     </div>
@@ -84,9 +70,25 @@ class Profile extends React.Component {
  }
 }
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state , ownProps) => {
+  const id = ownProps.match.params.id;
+  const users = state.firestore.data.users;
+  const user = users ? users[id] : null ;
   return{
-    auth: state.firebase.auth
+    id : id,
+    user : user
   }
 }
-export default connect(mapStateToProps)(Profile);
+
+const mapDispatchToProps = dispatch =>{
+  return{
+    editUserProfile : (id, user) => dispatch(editUserProfile(id, user))
+  }
+}
+
+export default compose(
+  connect(mapStateToProps,mapDispatchToProps),
+  firestoreConnect([
+      {collection : 'users'}
+  ])
+)(Profile);

@@ -6,12 +6,12 @@ import NotLogIt from '../../components/NotLogIn';
 import { connect } from 'react-redux';
 
 const Navbar = (props) => {
-  const { auth } = props;
+ const { auth } = props;
  return (
   <header className={styles.wrapper}>
    <img className={styles.logoSC} src={LogoSC} alt="logo show case" />
    <nav className={styles.navPanel}>
-     { auth.uid ? <LogIn/> : <NotLogIt/> }
+     { auth.uid ? <LogIn id={auth.uid}/> : <NotLogIt/> }
     </nav>
   </header>
  );

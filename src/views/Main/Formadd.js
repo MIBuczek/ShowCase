@@ -1,18 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import Cross from '../../assets/cross.png';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import styles from './Formadd.module.scss';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { createContact } from '../../store/actions/contactActions';
 
 
-class FromAdd extends React.Component {
- constructor(props) {
-  super(props);
-  this.state = {
-   userId: this.props.userId,
+class FromAdd extends Component {
+ state = {
    companyName: '',
    companyCountry: '',
    companyWWW: '',
@@ -23,17 +20,17 @@ class FromAdd extends React.Component {
    contactPosition: '',
    description: ''
   };
- }
+
  handleAddContact = e => {
   e.preventDefault();
   this.setState({ [e.target.name]: e.target.value });
  };
 
+ handleUploadContact = e => {
+  this.props.createContact(this.state);
+  this.props.history.push('/');
+ }
  render() {
-   
-  const {auth}= this.props;
-  if(!auth.uid) return <Redirect to='/signin'/>
- 
   return (
    <section className={styles.wrapper}>
     <div className={styles.addContact}>
@@ -77,11 +74,10 @@ class FromAdd extends React.Component {
  }
 }
 
-const mapStateToProps = (state)=>{
+const mapDispatchToProps = dispatch =>{
   return{
-    auth: state.firebase.auth
+    createContact : contact => dispatch(createContact(contact))
   }
 }
 
-
-export default connect(mapStateToProps)(FromAdd);
+export default connect(null,mapDispatchToProps)(FromAdd);

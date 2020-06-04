@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './LogInForm.module.scss';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Motto from './Motto';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authAction';
 import { Redirect } from 'react-router-dom';
@@ -24,12 +25,13 @@ class LoggIn extends Component{
  }
 
  render() {
-   const { auth , authError } = this.props.authError
+   const { auth , authError } = this.props;
    if(auth.uid) return <Redirect to='/'/>
 
   return (
    <section className={styles.wrapper}>
-    <div className={styles.loggIn}>
+    <Motto />
+    <div className={styles.logIn}>
      <h3 className={styles.title}>log in.</h3>
      <form>
       <Input type={'text'}  placeholder={'user email.'}  name="email" 

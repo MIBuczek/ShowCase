@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import { signOut } from '../store/actions/authAction';
 
 const logIn = (props) =>{
+    console.log(props.id)
     return(    
         <ul>
             <li className={styles.navPanelLink}>
                 <NavLink exact to="/"> contacts.</NavLink>
             </li>
             <li className={styles.navPanelLink}>
-                <NavLink to="/profile">profil.</NavLink>
+                <NavLink to={"/profile/"+ props.id}>profil.</NavLink>
             </li>
             <li className={styles.navPanelLink}>
                 <a href='#' onClick={props.signOut}>log out. </a>

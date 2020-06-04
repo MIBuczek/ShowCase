@@ -1,0 +1,163 @@
+.wrapper {
+    width: 100%;
+    min-height: 83vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    .contact{
+        width: 55%;
+        min-height: 500px;
+        background: #c4c4c4;
+        border: 2px solid #ffffff;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 15px 0;
+        box-shadow: 0 5px 10px 5px grey;
+        position: relative;
+        &Text{
+            width: 90%;
+            text-align: center;
+            letter-spacing: -0.015em;
+            color: #efefef;
+            h1 {
+             font-weight: 600;
+             font-size: 24px;
+             line-height: 29px;
+            }
+            a {
+                position: absolute;
+                top:10px;
+                right: 15px;
+                .crossBtn {
+                outline: none;
+                width: 40px;
+                height: 40px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                }
+            }
+        }
+        &Description{
+            width: 90%;
+            height: 60%;
+            text-align: center;
+            letter-spacing: -0.015em;
+            color: #ffffff;
+            margin-bottom: 1rem;
+             h1 {
+                font-weight: 600;
+                font-size: 3rem;
+                line-height: 1.2;
+                margin: 10px 0;
+                span {
+                    color: rgb(78, 78, 78);
+                    font-weight: 600;
+                    font-size: 1.6rem;
+                    line-height: 17px;
+                    margin: 5px 10px;
+                }
+            }
+            h2 {
+                font-weight: 600;
+                font-size: 2rem;
+                line-height: 1.2;
+                margin: 8px 0;
+                span {
+                    color: rgb(78, 78, 78);
+                    font-weight: 600;
+                    font-size: 1.4rem;
+                    line-height: 17px;
+                    margin: 5px 10px;
+                }
+            }
+            span {
+                color: rgb(78, 78, 78);
+                font-weight: 600;
+                font-size: 1.4rem;
+                line-height: 1.2;
+                margin: 5px 10px;
+            }
+            p {
+                font-weight: normal;
+                font-size: 1.4rem;
+                line-height: 1.2;
+                color: white;
+                margin-top: 10px;
+            }
+        }
+        &Actions{
+            width: 90%;
+            height: 70px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            button {
+                width: 241px;
+                height: 49px;
+                border: 3px solid #ffffff;
+                background: #c4c4c4;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 29px;
+                letter-spacing: -0.015em;
+                cursor: pointer;
+                margin: 0 auto;
+                outline: none;
+                color: white;
+                a {
+                    text-decoration: none;
+                    margin: 0;
+                    color: white;
+                }
+                &:active {
+                    transition: width 0.2s;
+                    background: #d5d5d5;
+                }
+            }
+        }
+    }
+}
+.wrapperNoContact{
+    width: 100%;
+    min-height: 83vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    h1{
+        text-align: center;
+        font-size: 3rem;
+        color: #4c5f6b;
+    }
+    button{
+        font-family: 'Montserrat';
+        margin-left: 30px;
+        width: 132px;
+        height: 122px;
+        background: #93a8ac;
+        border: 2px solid #4c5f6b;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 24px;
+        letter-spacing: -0.015em;
+        color: #ffffff;
+        &:active {
+         outline: none;
+         transition-duration: 0.25s;
+         background: #4c5f6b;
+        }
+        a{
+            color:white;
+        }
+    }
+}

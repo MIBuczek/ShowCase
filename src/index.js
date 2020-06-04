@@ -7,16 +7,20 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
-import Firebase from './Firebase';
+import FirebaseConfig from './FirebaseConfig';
 
 const store = createStore(rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
-    reactReduxFirebase(Firebase), 
-    reduxFirestore(Firebase, {attachAuthIsReady: true}),
+    reduxFirestore(FirebaseConfig),
+    reactReduxFirebase(FirebaseConfig, {attachAuthIsReady: true}), 
   )
 );
 
-store.firebaseAuthIsReady.then(()=> {
+store.firebaseAuthIsReady.then(() => {
   ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
-})
+});
+
+//searchbar & sort function
+//mobilversion
+//animacja introduction

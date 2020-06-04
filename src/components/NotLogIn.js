@@ -6,10 +6,10 @@ const notLogIn = ()=>{
     return(
         <ul>
             <li className={styles.navPanelLink}>
-                <NavLink exact to="/signin">sing in.</NavLink>
+                <NavLink exact to="/signup">sing up.</NavLink>
             </li>
             <li className={styles.navPanelLink}>
-                <NavLink to="/signup">sing up.</NavLink>
+                <NavLink to="/login">log in.</NavLink>
             </li>
         </ul>
     );

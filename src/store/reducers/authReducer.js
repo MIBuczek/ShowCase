@@ -28,7 +28,16 @@ switch(action.type){
             ...state,
             authError: action.err.message
         }
-
+    case 'UPDATE_PRFILE_SUCCESS' : 
+        return{
+            ...state,
+            authError: null
+        }
+    case 'EDIT_CONTACT_ERROR':
+        return{
+            ...state,
+            authError: action.err.message
+        }
     default:
         return state
     }
