@@ -2,45 +2,42 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Cards.module.scss';
 
-const Cards = ({
- userData,
- handleEditContact,
- visible,
- handleDeleteContact
-}) => {
- return (
-  <section className={styles.wrapper}>
-   {userData.slice(0, visible).map((contact, id) => {
-    return (
-     <div className={styles.card} key={id}>
-      <div className={styles.cardBtn}>
-       <button
-        onClick={e => {
-         handleEditContact(e, contact);
-        }}
-       >
-        <Link to="/editcontact">edit.</Link>
-       </button>
-       <button
-        type="button"
-        onClick={e => handleDeleteContact(e, contact.contacId)}
-       >
-        delete.
-       </button>
-      </div>
-      <div className={styles.cardData}>
-       <h1>{contact.companyName}</h1>
-       <span>{contact.companyCountry}</span>
-       <h2>{contact.contactName}</h2>
-       <span>phone: {contact.contactPhone}</span>
-       <span>email: {contact.contactEmail}</span>
-       <p>Note: {contact.description}</p>
-      </div>
-     </div>
-    );
-   })}
-  </section>
- );
+
+const Cards = (props) => {
+
+   if(props.contacts !== 0){
+      return (
+      <section className={styles.wrapper}>
+         {props.contacts &&  props.contacts.map( contact => (
+            <div className={styles.card} key={contact.companyName}>
+            <div className={styles.cardData}>
+               <div className={styles.cardData_text}>
+                  <p>Company :</p>
+                  <h1>{contact.companyName}</h1>
+               </div>
+               <div className={styles.cardData_text}>
+                  <p>Conuntry :</p>
+                  <span>{contact.companyCountry}</span>
+               </div>
+               <div className={styles.cardData_text}> 
+                  <p>Person :</p>
+                  <h2>{contact.contactName}</h2>
+               </div>
+               <button>
+               <Link to={"/contact/" + contact.contactId}>show more.</Link>
+               </button>
+            </div>
+            </div>
+         ))}
+      </section>
+      );
+   } else {
+      return(
+         <section className={styles.wrapper}>
+             <h1 className={styles.loading}>your contacts base is empty<br/>please add first contact.</h1>
+         </section>
+      )
+   }
 };
 
 export default Cards;

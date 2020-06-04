@@ -1,6 +1,6 @@
 .wrapper {
  width: 90%;
- height: 100%;
+ min-height: 50vh;
  display: flex;
  flex-direction: row;
  flex-wrap: wrap;
@@ -9,71 +9,84 @@
  margin-right: auto;
  font-family: 'Montserrat';
  font-style: normal;
-}
-.card {
- display: flex;
- flex-direction: row;
- justify-content: space-evenly;
- width: 617px;
- min-height: 220px;
- background: #c4c4c4;
- border: 2px solid #ffffff;
- margin: 20px;
- &Btn {
-  width: 15%;
-  height: 90%;
-  margin: 10px 10px;
-  button {
-   width: 67px;
-   height: 29px;
-   background: #c4c4c4;
-   border: 2px solid #ffffff;
-   color: white;
-   margin-bottom: 10px;
-   font-weight: 600;
-   font-size: 14px;
-   line-height: 17px;
-   letter-spacing: -0.015em;
-   color: #ffffff;
-   a {
-    text-decoration: none;
+    .loading{
+        text-align: center;
+        margin: auto 0;
+        font-size: 3rem;
+        color:#4c5f6b;
+    }
+    .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 500px;
+    height: 250px;
+    background: #c4c4c4;
+    border: 2px solid #ffffff;
+    margin: 20px;
+    button {
+    width: 167px;
+    height: 49px;
+    background: #c4c4c4;
+    border: 2px solid #ffffff;
+    color: white;
+    margin: 10px 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    margin-right: auto;
     color: #ffffff;
-   }
-  }
- }
- &Data {
-  width: 70%;
-  height: 90%;
-  margin: 10px;
-  font-weight: 600;
-  color: #ffffff;
-  text-align: center;
-  margin-right: 10%;
-  h1 {
-   font-weight: 600;
-   font-size: 36px;
-   line-height: 44px;
-   margin: 10px 0;
-  }
-  h2 {
-   font-weight: 600;
-   font-size: 24px;
-   line-height: 29px;
-   margin: 8px 0;
-  }
-  span {
-   color: black;
-   font-weight: 600;
-   font-size: 14px;
-   line-height: 17px;
-   margin: 5px 10px;
-  }
-  p {
-   font-weight: normal;
-   font-size: 14px;
-   line-height: 17px;
-   color: black;
-   margin-top: 10px;
-  }
- }
+    a {
+        text-decoration: none;
+        color: #ffffff;
+    }
+    }
+
+    &Data {
+    width: 75%;
+    height: 90%;
+    margin: 10px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    margin-right: 10%;
+    &_text{
+        width:100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+        h1 {
+            width:70%;
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 44px;
+            margin: 5px 0;
+        }
+        h2 {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 29px;
+            margin: 8px 0;
+        }
+        span {
+            color: black;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 17px;
+            margin: 5px 10px;
+        }
+        p {
+            width:25%;
+            font-weight: normal;
+            font-size: 1rem;
+            line-height: 17px;
+            color: black;
+        }
+        }
+    }
+    }
 }

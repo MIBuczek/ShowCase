@@ -1,84 +1,65 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './LogInForm.module.scss';
-import SingIn from './SingIn';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Motto from './Motto';
+import { connect } from 'react-redux';
+import { signIn } from '../../store/actions/authAction';
+import { Redirect } from 'react-router-dom';
 
-class LoggIn extends React.Component {
- constructor(props) {
-  super(props);
-  this.state = {
-   singIn: false,
-   newUser: undefined
-  };
+
+class LoggIn extends Component{
+ state = {
+   email: '',
+   password: ''
  }
 
- handleSingIn = e => {
-  e.preventDefault();
-  this.setState({ singIn: true });
- };
- handleSingOut = e => {
-  e.preventDefault();
-  this.setState({ singIn: false });
- };
- addNewUser = (e, newPerson) => {
-  e.preventDefault();
-  this.setState({ newUser: newPerson });
- };
+ handleChange = (e)=> {
+    this.setState({
+       [e.target.name]:e.target.value
+    })
+ }
+ handleSubmit = (e)=> {
+   e.preventDefault();
+   this.props.signIn(this.state);
+ }
+
  render() {
-  const singInText = (
-   <h3 className={styles.singInText}>
-    if you do not have account, please
-    <button
-     className={styles.singInBtn}
-     onClick={e => {
-      this.handleSingIn(e);
-     }}
-    >
-     sing in.
-    </button>
-   </h3>
-  );
+   const { auth , authError } = this.props;
+   if(auth.uid) return <Redirect to='/'/>
+
   return (
    <section className={styles.wrapper}>
-    <div className={styles.loggIn}>
+    <Motto />
+    <div className={styles.logIn}>
      <h3 className={styles.title}>log in.</h3>
      <form>
-      <Input
-       type={'text'}
-       placeholder={'user name.'}
-       name="userName"
-       value={this.props.valueUser}
-       onChange={this.props.onChangeFn}
-      />
-      <Input
-       type={'password'}
-       placeholder={'password.'}
-       name="password"
-       value={this.props.valuePassword}
-       onChange={this.props.onChangeFn}
-      />
+      <Input type={'text'}  placeholder={'user email.'}  name="email" 
+      value={this.state.email} onChange={(e)=>this.handleChange(e)} />
+      <Input type={'password'} placeholder={'password.'} name="password"
+       value={this.state.valuePassword} onChange={(e)=>this.handleChange(e)}/>
      </form>
-     <Button
-      type={'button'}
-      value={'next.'}
-      eventHandle={this.props.onClickFn}
-     />
-     {this.state.singIn ? (
-      <SingIn
-       loadData={this.props.loadData}
-       singOut={e => {
-        this.handleSingOut(e);
-       }}
-       eventHandle={this.handleSingOut}
-      />
-     ) : (
-      singInText
-     )}
+     <Button type={'button'} value={'log in.'} eventHandle={(e)=>this.handleSubmit(e)}/>
+      <div>
+        {authError ? <span>authError</span> : null}
+      </div>
     </div>
    </section>
   );
  }
 }
 
-export default LoggIn;
+const mapStateToProps = (state)=>{
+  return{
+    auth: state.firebase.auth,
+    authError : state.auth.authError 
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+   return{
+    signIn: (creds) => dispatch(signIn(creds))
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoggIn);
+
