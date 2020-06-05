@@ -7,7 +7,7 @@ import styles from './MainPannel.module.scss';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 
 class MainPannel extends Component{
@@ -15,7 +15,7 @@ class MainPannel extends Component{
     super(props);
     this.state = { 
       user: undefined,
-      contacts : undefined
+      contacts : undefined,
     };
   }
   
@@ -24,7 +24,7 @@ class MainPannel extends Component{
       const { user , contacts } = this.props;
       this.setState({
         user: user,
-        contacts: contacts
+        contacts: contacts !== null ? contacts : [],
       })
     },500)
   }
@@ -35,7 +35,9 @@ class MainPannel extends Component{
 
  render(){
     const { user, contacts } = this.state;
+
     if(user !== undefined && contacts !== undefined){
+      console.log(contacts)
       return (
         <main className={styles.wrapperMain}>
             <Welcombar user={user} contacts={contacts}/>
@@ -63,7 +65,7 @@ const mapStateToProps = (state)=>{
   const userContacts = contacts && contacts.filter(contact => contact.userId === id );
 
   return{
-    auth: state.firebase.auth,
+    auth: id,
     user : user,
     contacts : userContacts
   }

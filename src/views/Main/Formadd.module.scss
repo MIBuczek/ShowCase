@@ -78,4 +78,33 @@
    background: #d5d5d5;
   }
  }
+ @media (max-width: 1200px){
+    .addContact{
+        width: 95%;
+        &Text{
+            width: 100%;
+            a{
+                top:10px;
+                right:10px;
+                .crossBtn {
+                    width: 40px;
+                    height: auto;
+                    img{
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+            h1{
+                margin-top: 3rem;
+            }
+            input{
+                margin-right: 0;
+            }
+        }
+        button{
+            margin-bottom: 1rem;
+        }
+    }
+ }
 }

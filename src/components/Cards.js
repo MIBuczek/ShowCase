@@ -5,7 +5,7 @@ import styles from './Cards.module.scss';
 
 const Cards = (props) => {
 
-   if(props.contacts !== 0){
+   if(props.contacts.length !== 0){
       return (
       <section className={styles.wrapper}>
          {props.contacts &&  props.contacts.map( contact => (

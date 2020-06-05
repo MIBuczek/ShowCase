@@ -40,9 +40,8 @@
     a {
         text-decoration: none;
         color: #ffffff;
+        }
     }
-    }
-
     &Data {
     width: 75%;
     height: 90%;
@@ -65,28 +64,61 @@
             font-size: 36px;
             line-height: 44px;
             margin: 5px 0;
-        }
+            }
         h2 {
             font-weight: 600;
             font-size: 24px;
             line-height: 29px;
             margin: 8px 0;
-        }
+            }
         span {
             color: black;
             font-weight: 600;
             font-size: 14px;
             line-height: 17px;
             margin: 5px 10px;
-        }
+            }
         p {
             width:25%;
             font-weight: normal;
             font-size: 1rem;
             line-height: 17px;
             color: black;
-        }
+            }
         }
     }
+    }
+    @media (max-width: 1250px) {
+        width: 100%;
+        .card{
+            height: 300px;
+        &Data{
+            width: 98%;
+            margin: 0.2rem;
+            &_text{
+                flex-direction: column;
+                text-align: center;
+                h1, h2{
+                    width: 90%;
+                    margin: 0.2rem 0;
+                    }
+                p{
+                    width: 50%;
+                    margin: 0.5rem 0;
+                    }
+                span{
+                    color:white;
+                    font-size: 1.5rem;
+                }
+                }
+            }
+            button{
+                margin-top: 15px;
+            }
+        }
+        .loading{
+            font-size: 1.8rem;
+            width: 85%;
+        }
     }
 }
