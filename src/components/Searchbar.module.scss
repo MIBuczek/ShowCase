@@ -30,6 +30,9 @@
   letter-spacing: -0.015em;
   color: #ffffff;
   text-align-last: center;
+  @media (max-width: 1250px) {
+      width: 35%;
+  }
  }
  &Input {
   width: 30%;

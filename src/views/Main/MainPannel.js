@@ -7,24 +7,26 @@ import styles from './MainPannel.module.scss';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 
 class MainPannel extends Component{
   constructor(props) {
     super(props);
     this.state = { 
+      auth : undefined,
       user: undefined,
-      contacts : undefined
+      contacts : undefined,
     };
   }
   
   componentDidMount(){
     setTimeout(()=>{
-      const { user , contacts } = this.props;
+      const { user , contacts, auth } = this.props;
       this.setState({
+        auth : auth,
         user: user,
-        contacts: contacts
+        contacts: contacts !== null ? contacts : [],
       })
     },500)
   }
@@ -34,8 +36,9 @@ class MainPannel extends Component{
   }
 
  render(){
-    const { user, contacts } = this.state;
-    if(user !== undefined && contacts !== undefined){
+    const { user, contacts , auth} = this.state;
+
+    if( auth && user !== undefined && contacts !== undefined){
       return (
         <main className={styles.wrapperMain}>
             <Welcombar user={user} contacts={contacts}/>
@@ -55,6 +58,7 @@ class MainPannel extends Component{
       }
     }
 }
+
 const mapStateToProps = (state)=>{
   const id = state.firebase.auth.uid;
   const users = state.firestore.data.users;
@@ -63,12 +67,11 @@ const mapStateToProps = (state)=>{
   const userContacts = contacts && contacts.filter(contact => contact.userId === id );
 
   return{
-    auth: state.firebase.auth,
+    auth: id,
     user : user,
     contacts : userContacts
   }
 }
-
 
 export default compose(
   connect(mapStateToProps),

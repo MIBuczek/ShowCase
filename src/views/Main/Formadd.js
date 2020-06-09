@@ -74,10 +74,16 @@ class FromAdd extends Component {
  }
 }
 
+const mapStateToProps = state =>{
+  const id = state.firebase.auth.uid;
+  return{
+    id : id
+  }
+}
 const mapDispatchToProps = dispatch =>{
   return{
     createContact : contact => dispatch(createContact(contact))
   }
 }
 
-export default connect(null,mapDispatchToProps)(FromAdd);
+export default connect(mapStateToProps,mapDispatchToProps)(FromAdd);

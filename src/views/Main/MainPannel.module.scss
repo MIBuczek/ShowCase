@@ -10,6 +10,9 @@
         font-size: 3rem;
         color:rgba(147, 168, 172, 1);
     }
+    @media (max-width: 1200px){
+        min-height: 65vh;
+    }
 }
 .wrappeCards {
     width: 100%;

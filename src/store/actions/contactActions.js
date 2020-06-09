@@ -4,8 +4,6 @@ export const createContact = (contact) => {
         const firestore = getFirestore();
         firestore.collection('contacts').add({
             ...contact,
-            authorFirstName: 'Mib',
-            authorLastName : 'Bucz',
             // authorId: 1234,
             createAt: new Date()
         }).then(()=>{

@@ -124,6 +124,31 @@
             }
         }
     }
+    @media (max-width: 1250px) {
+        .contact{
+            width: 95%;
+            &Text{
+                h1{
+                    margin-top: 3rem;
+                }
+            }
+            &Description{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                span{
+                    width: 100%;
+                }
+            }
+            &Actions{
+               width: 98%;
+               button {
+               width: 150px;
+                }
+            }
+        }
+    }
 }
 .wrapperNoContact{
     width: 100%;

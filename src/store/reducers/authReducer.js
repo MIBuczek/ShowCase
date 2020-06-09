@@ -1,4 +1,5 @@
 const initState = {
+    id : null,
     authError: null
   }
   
@@ -20,6 +21,7 @@ switch(action.type){
     case 'SIGNUP_SUCCESS':
         return {
             ...state,
+            id: action.resp,
             authError: null
         }
 

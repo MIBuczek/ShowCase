@@ -76,4 +76,24 @@
    background: #d5d5d5;
   }
  }
+ @media (max-width: 1200px){
+    width: 95%;
+    min-height: 470px;
+    text-align: center;
+    a{
+        top:10px;
+        right:10px;
+        .crossBtn {
+            width: 40px;
+            height: auto;
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+    h5{
+        width: 95%;
+    }
+ }
 }

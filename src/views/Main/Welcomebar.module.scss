@@ -5,7 +5,6 @@
  flex-direction: row;
  justify-content: center;
  align-items: center;
-
  .welcomeBar {
   min-width: 30%;
   height: 160px;
@@ -37,7 +36,7 @@
    line-height: 36px;
   }
   @media (max-width: 1200px) {
-   width: 50%;
+   width: 90%;
    height: auto;
    text-align: center;
    margin: 10px 0;
@@ -60,5 +59,12 @@
    transition-duration: 0.25s;
    background: #4c5f6b;
   }
+  @media (max-width: 1200px) {
+      margin-left: 0;
+      margin-bottom: 0.5rem;
+  }
  }
+ @media (max-width: 1200px) {
+    flex-direction: column;
+    }
 }
