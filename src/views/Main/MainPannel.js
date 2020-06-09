@@ -14,6 +14,7 @@ class MainPannel extends Component{
   constructor(props) {
     super(props);
     this.state = { 
+      auth : undefined,
       user: undefined,
       contacts : undefined,
     };
@@ -21,8 +22,9 @@ class MainPannel extends Component{
   
   componentDidMount(){
     setTimeout(()=>{
-      const { user , contacts } = this.props;
+      const { user , contacts, auth } = this.props;
       this.setState({
+        auth : auth,
         user: user,
         contacts: contacts !== null ? contacts : [],
       })
@@ -34,10 +36,9 @@ class MainPannel extends Component{
   }
 
  render(){
-    const { user, contacts } = this.state;
+    const { user, contacts , auth} = this.state;
 
-    if(user !== undefined && contacts !== undefined){
-      console.log(contacts)
+    if( auth && user !== undefined && contacts !== undefined){
       return (
         <main className={styles.wrapperMain}>
             <Welcombar user={user} contacts={contacts}/>
@@ -57,6 +58,7 @@ class MainPannel extends Component{
       }
     }
 }
+
 const mapStateToProps = (state)=>{
   const id = state.firebase.auth.uid;
   const users = state.firestore.data.users;
@@ -70,7 +72,6 @@ const mapStateToProps = (state)=>{
     contacts : userContacts
   }
 }
-
 
 export default compose(
   connect(mapStateToProps),

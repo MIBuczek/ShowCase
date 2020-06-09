@@ -10,6 +10,7 @@ import Formedit from './views/Main/Formedit';
 import Contact from './components/Contact';
 import Profile from './views/Main/Profile';
 import Footer from './views/LogIn/Footer';
+import IntroPannel from './views/LogIn/IntroPannel';
 
 class App extends React.Component {
 
@@ -20,6 +21,7 @@ class App extends React.Component {
         <Navbar />
         <Switch>
           <Route exact path='/'component={MainPannel} />
+          <Route exact path='/intro'component={IntroPannel} />
           <Route path='/editcontact/:id' component={Formedit} />
           <Route path='/contact/:id' component={Contact} />
           <Route path='/signup' component={SignUpForm} />
